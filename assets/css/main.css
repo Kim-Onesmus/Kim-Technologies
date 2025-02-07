@@ -1093,47 +1093,62 @@ section,
   font-size: 15px;
   font-weight: 600;
 }
-
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
-  padding: 30px;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  height: 100%;
+  padding: 60px 30px;
+  text-align: center;
   transition: 0.3s;
+  border-radius: 5px;
 }
 
 .services .service-item .icon {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.services .service-item .icon i {
   font-size: 36px;
-  line-height: 0;
-  margin-right: 30px;
-  color: var(--accent-color);
+  transition: 0.5s;
+  position: relative;
 }
 
-.services .service-item .title {
+.services .service-item .icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.services .service-item .icon svg path {
+  transition: 0.5s;
+  fill: color-mix(in srgb, var(--default-color), transparent 95%);
+}
+
+.services .service-item h3 {
   font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 20px;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
 }
 
-.services .service-item .title a {
-  color: var(--heading-color);
-}
-
-.services .service-item .description {
+.services .service-item p {
   line-height: 24px;
   font-size: 14px;
-  margin: 0;
+  margin-bottom: 0;
 }
 
 .services .service-item:hover {
-  border-color: var(--accent-color);
+  box-shadow: 2px 7px 37px 2px rgba(0, 0, 0, 0.1);
 }
 
-.services .service-item:hover .title a {
-  color: var(--accent-color);
-}
 
 /*--------------------------------------------------------------
 # Call To Action Section
