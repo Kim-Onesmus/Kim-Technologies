@@ -1103,6 +1103,7 @@ section,
   text-align: center;
   transition: 0.3s;
   border-radius: 5px;
+  border: 2px solid rgb(238, 237, 237);
 }
 
 .services .service-item .icon {
