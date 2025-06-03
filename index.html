@@ -1,554 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Kim Technologies</title>
-  <meta name="description" content="Kim Technologies">
-  <meta name="keywords" content="">
-  <link href="assets/img/logo.png" rel="icon">
-  <link href="assets/img/logo.png" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/main.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Technologies</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="KimTechnologie - Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
+    <meta name="keywords" content="technology, web design, kim technologies, web development, mobile apps, cloud solutions, software development">
+    <meta name="author" content="KimTechnologie">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="KimTechnologie - Professional Profile">
+    <meta name="description"
+        content="KimTechnologie is a premier provider of innovative technology solutions, specializing in custom web development, mobile applications, IT consulting, and cloud-based services tailored to your business needs.">
+    <meta property="og:image" content="https://source.unsplash.com/1200x630/?technology">
+    <meta property="og:url" content="https://kimtechnologie.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KimTechnologie - Professional Profile">
+    <meta name="twitter:description"
+        content="Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
+    <meta name="twitter:image" content="https://source.unsplash.com/1200x630/?technology">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fav1-01.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="index-page">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img class="logo" src="logoo1.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#work">Our Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="Kim Technologies Logo">
-      </a>
+    <section id="home" class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="herooo.jpg" class="d-block w-100" alt="Hero 1">
+                    <div class="carousel-caption">
+                        <h1>Your Trusted Partner in Digital Transformation</h1>
+                        <p>Empowering businesses through innovative, scalable, and secure technology solutions.</p><br>
+                        <a href="#get-started" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#work">Our Work</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-    </div>
-  </header>
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">About Us</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p style="text-align: justify;">
+                        At <strong>Kim Technologies</strong>, we specialize in delivering smart, scalable, and secure digital solutions that
+                        help businesses succeed in today’s fast-paced, tech-driven world.
+                        <br>
+                        Our core focus is on developing responsive websites, robust web and mobile applications, and providing dependable IT
+                        support services. Every solution we deliver is tailored to align with your unique business goals and built with
+                        future-ready technologies.
+                        <br>
+                        From startups looking to establish a strong online presence to enterprises aiming to optimize their operations, we
+                        are committed to creating solutions that are not only efficient and user-friendly but also scalable and built to
+                        last.
+                        <br>
+                        Let us help you turn your ideas into impactful digital products — designed to drive growth, enhance performance, and
+                        deliver real value.
+                    </p>                                      
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="heroo.jpg" alt="About Us" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <main class="main">
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
+    <section id="numbers" class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3" data-aos="fade-up">
+                    <div class="number-item">
+                        <i class="fas fa-heart fa-3x mb-3"></i>
+                        <h3 class="counter">10+</h3>
+                        <p>Satisfied Clients</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="number-item">
+                        <i class="fas fa-project-diagram fa-3x mb-3"></i>
+                        <h3 class="counter">15+</h3>
+                        <p>Completed Projects</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="number-item">
+                        <i class="fas fa-award fa-3x mb-3"></i>
+                        <h3 class="counter">98%</h3>
+                        <p>Client Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="number-item">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h3 class="counter">3+</h3>
+                        <p>Skilled Team Members</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div style="background-color: dodgerblue;" id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-        <div class="carousel-item active">
-          <div class="carousel-container">
-            <h2>Empowering Businesses with Technology</h2>
-            <p>At Kim Technologies, we craft cutting-edge digital solutions that drive growth, enhance efficiency, and transform
-              businesses. From intuitive UI/UX design to scalable web applications and cloud solutions, we bring your vision to
-              life.</p>
-            <a href="#featured-services" class="btn-get-started">Get Started</a>
-          </div>
-        </div><!-- End Carousel Item -->
-        
-        <div class="carousel-item">
-          <div class="carousel-container">
-            <h2>Your Trusted Digital Partner</h2>
-            <p>We believe in the power of innovation. Whether you're a startup or an enterprise, our expert team delivers
-              world-class web development, cloud integration, and strategic consulting to ensure your success in the digital
-              era.</p>
-            <a href="#featured-services" class="btn-get-started">Discover More</a>
-          </div>
-        </div><!-- End Carousel Item -->
-
-        
-        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a>
-
-        <ol class="carousel-indicators"></ol>
-
-      </div>
-
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About Us</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-            <h3>Empowering Businesses Through Digital Innovation</h3>
-            <p class="fst-italic">
-              At Kim Technologies, we believe in transforming ideas into powerful digital solutions. As 
-              a cutting-edge web development and IT solutions company, we specialize in building modern, 
-              scalable, and high-performance websites that elevate businesses to new heights. Whether you're 
-              a startup, SME, or an established enterprise, we craft tailored digital experiences that help 
-              you stand out, grow, and succeed in today's competitive landscape.
+    <section id="call-to-action" class="py-5" style="background-color: #036CB9;">
+        <div class="container text-center text-white">
+            <h2 class="mb-3">Partner With Us to Bring Your Vision to Life</h2>
+            <p class="mb-4">
+                Whether you're planning a new project or seeking expert consultation, we're here to collaborate with you
+                every step of the way. Let's connect and explore how we can deliver exceptional results together.
             </p>
-            <!-- <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-            </ul> -->
-            <a href="#contact" class="read-more"><span>Get Started</span><i class="bi bi-arrow-right"></i></a>
-          </div>
-
-          <div class="col-lg-4 about-images" data-aos="fade-up" data-aos-delay="200">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="About Kim Technologies">
-          </div>
-
+            <a href="#contact" class="btn btn-lg" style="background-color: #A5075E; color: #fff; border: none;">
+                Schedule a Consultation
+            </a>
         </div>
+    </section>
 
-      </div>
-    </section><!-- /About Section -->
 
-    <!-- Stats Section -->
-    <section id="stats" class="stats section light-background">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span>10+</span>
-              <p>Clients</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span>20+</span>
-              <p>Projects</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span>98%</span>
-              <p>Clients satisfaction</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span>4.5</span>
-              <p>Average Rating</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Stats Section -->
-
-    <!-- Services Section -->
-    <section style="background-color: #fff;" id="services" class="services section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-      </div><!-- End Section Title -->  
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item item-cyan position-relative">
-              <div class="icon">
-                <i class="bi bi-laptop"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Web Development</h3>
-              </a>
-              <p>
-                Building High-Performance Websites & Applications
-              </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item item-orange position-relative">
-              <div class="icon">
-                <i class="bi bi-vector-pen"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>UI/UX</h3>
-              </a>
-              <p>
-                Crafting Intuitive & Engaging Digital Experiences
-              </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item item-teal position-relative">
-              <div class="icon">
-                <i class="bi bi-globe"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Cloud Solutions</h3>
-              </a>
-              <p>
-                Secure, Scalable, and Future-Ready Digital Infrastructure
-              </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item item-red position-relative">
-              <div class="icon">
-                <i class="bi bi-people"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Consulting</h3>
-              </a>
-              <p>
-                Expert Guidance for digital Growth & Technology Optimization
-              </p>
-              <a class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-
-    <!-- Call To Action Section -->
-    <section id="call-to-action" class="call-to-action section dark-background">
-
-      <img src="" alt="">
-
-      <div class="container">
-        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-xl-10">
-            <div class="text-center">
-              <h3>Ready to Elevate Your Business?</h3>
-              <p>Let's turn your ideas into reality. Start your digital transformation today!</p>
-              <a class="cta-btn" href="#contact">Get Started</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- /Call To Action Section -->
-
-    <section id="work" class="team section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Our Work</h2>
-      </div><!-- End Section Title -->
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <div class="social">
-                    <p>Name</p>
-                    <a href=""><i style="font-size: 60px;" class="bi bi-globe"></i></a>
-                  </div>
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Our Services</h2>
+            <div class="row">
+    
+                <!-- Web Development -->
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="service-card text-center">
+                        <i class="fas fa-laptop-code fa-3x mb-3"></i>
+                        <h3>Web Development</h3>
+                        <p>Custom websites and applications built using modern, secure, and scalable technologies.</p>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <div class="social">
-                    <p>Name</p>
-                    <a href=""><i style="font-size: 60px;" class="bi bi-globe"></i></a>
-                  </div>
+    
+                <!-- UI/UX Design -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card text-center">
+                        <i class="fas fa-pencil-ruler fa-3x mb-3"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Intuitive and elegant designs crafted to maximize user engagement and usability.</p>
+                    </div>
                 </div>
-              </div>
+    
+                <!-- IT Consulting -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card text-center">
+                        <i class="fas fa-lightbulb fa-3x mb-3"></i>
+                        <h3>Consulting</h3>
+                        <p>Strategic guidance and technology planning to align your goals with the right solutions.</p>
+                    </div>
+                </div>
+    
+                <!-- IT Support -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card text-center">
+                        <i class="fas fa-headset fa-3x mb-3"></i>
+                        <h3>IT Support</h3>
+                        <p>Professional support and troubleshooting to keep your systems running at optimal performance.</p>
+                    </div>
+                </div>
+    
+                <!-- Payment Integrations -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card text-center">
+                        <i class="fas fa-credit-card fa-3x mb-3"></i>
+                        <h3>Payment Integrations</h3>
+                        <p>Secure and seamless payment gateway integrations tailored to your business needs.</p>
+                    </div>
+                </div>
+    
+                <!-- Maintenance -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card text-center">
+                        <i class="fas fa-tools fa-3x mb-3"></i>
+                        <h3>Maintenance</h3>
+                        <p>Continuous monitoring and maintenance to ensure your digital assets remain up-to-date and high-performing.</p>
+                    </div>
+                </div>
+    
             </div>
-          </div><!-- End Team Member -->
         </div>
-
-      </div>
-
-    </section><!-- /Team Section -->
-
+    </section>
+    
+    <!-- Our Work Section -->
+    <section id="work" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Our Work</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="work-card">
+                        <img src="kamakowajamtaka.png" alt="KAMAKOWA JAM TAKA CBO" class="img-fluid">
+                        <div class="work-overlay">
+                            <h6>KAMAKOWA JAM TAKA CBO</h6>
+                            <a href="https://kamakowajamtaka.org/" target="_blank" class="project-icon">
+                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3" data-aos="fade-up">
+                    <div class="work-card">
+                        <img src="allie_web.png" alt="Allie Assignment Help Center" class="img-fluid">
+                        <div class="work-overlay">
+                            <h6>Allie Assignment Help Center</h6>
+                            <a href="https://allieassignmenthelp.com/" target="_blank" class="project-icon">
+                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="work-card">
+                        <img src="brianlog.png" alt="Brian Logistics LTD" class="img-fluid">
+                        <div class="work-overlay">
+                            <h6>Brian Logistics LTD</h6>
+                            <a href="https://www.brianlogisticsltd.co.ke/" target="_blank" class="project-icon">
+                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="work-card">
+                        <img src="digniflows.png" alt="DigniFlow" class="img-fluid">
+                        <div class="work-overlay">
+                            <h6>DigniFlow</h6>
+                            <a href="https://www.digniflow.com/" target="_blank" class="project-icon">
+                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Section -->
-    <!-- <section id="testimonials" class="testimonials section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>What our Client say</h2>
-      </div>
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Testimonials</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="testimonial-item text-center">
+                        <img src="heroo.jpg" alt="Client 1"
+                            class="rounded-circle mb-3">
+                        <p class="lead">"Amazing work and professional team. They delivered beyond our expectations."
+                        </p>
+                        <h5>Sarah Wilson</h5>
+                        <p>CEO, TechCorp</p>
+                    </div>
                 </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-item text-center">
+                        <img src="heroo.jpg" alt="Client 2"
+                            class="rounded-circle mb-3">
+                        <p class="lead">"The best technology partner we've worked with. Highly recommended!"</p>
+                        <h5>David Brown</h5>
+                        <p>CTO, InnovateInc</p>
+                    </div>
                 </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-item text-center">
+                        <img src="heroo.jpg" alt="Client 3"
+                            class="rounded-circle mb-3">
+                        <p class="lead">"Outstanding service and support. They truly understand our business needs."</p>
+                        <h5>Emily Chen</h5>
+                        <p>Director, GlobalTech</p>
+                    </div>
                 </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
             </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-              </div>
-            </div>
-
-          </div>
-          <div class="swiper-pagination"></div>
+            <div class="text-center mt-5">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testimonialModal">
+                    Submit a Testimonial
+                </button>
+            </div>            
         </div>
+    </section>
 
-      </div>
 
+    <!-- Testimonial Modal -->
+    <div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="testimonialForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="testimonialModalLabel">Submit Your Testimonial</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+    
+                        <div class="mb-3">
+                            <label for="clientName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="clientName" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="clientRole" class="form-label">Title / Role</label>
+                            <input type="text" class="form-control" id="clientRole">
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="testimonialText" class="form-label">Your Testimonial</label>
+                            <textarea class="form-control" id="testimonialText" rows="4" required></textarea>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="clientImage" class="form-label">Photo (optional)</label>
+                            <input type="file" class="form-control" id="clientImage" accept="image/*">
+                        </div>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+
+    <!-- FAQ Section -->
+    <!-- <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item" data-aos="fade-up">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    What services do you offer?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer a comprehensive range of technology services including web development,
+                                    mobile app development, cloud solutions, and custom software development tailored to
+                                    your specific needs.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    How long does a typical project take?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Project timelines vary depending on complexity and scope. A typical web project
+                                    takes 4-8 weeks, while mobile apps may take 8-12 weeks. We'll provide a detailed
+                                    timeline during our initial consultation.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    What is your pricing structure?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer flexible pricing models including fixed-price projects, time and materials,
+                                    and retainer agreements. Contact us for a detailed quote based on your specific
+                                    requirements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    Do you provide ongoing support?
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer comprehensive support and maintenance packages to ensure your
+                                    solutions remain up-to-date and perform optimally. Our support team is available
+                                    24/7 for critical issues.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section> -->
-    <!-- /Testimonials Section -->
+     
+
+    <section id="call-to-action" class="py-5" style="background-color: #036CB9;">
+        <div class="container text-center text-white">
+            <h2 class="mb-3">Accelerate Your Business with a Trusted Digital Partner</h2>
+            <p class="mb-4">
+                Looking to enhance your operations, expand your digital presence, or launch a new solution? Our team is
+                ready to deliver tailored strategies that drive real business results.
+            </p>
+            <a href="#contact" class="btn btn-lg" style="background-color: #A5075E; color: #fff; border: none;">
+                Connect with Our Experts
+            </a>
+        </div>
+    </section>
+    
+
+    <!-- Trustees Section -->
+    <section id="trustees" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Our Clients</h2>
+            <div class="trustees-slider">
+                <div class="row">
+                    <div class="col-md-3 mb-4" data-aos="fade-up">
+                        <div class="trustee-card">
+                            <img style="width: 120px;" src="kamakowa.png" alt="Trustee 1"
+                                class="img-fluid  mb-3">
+                            <p>KAMAKOWA JAM TAKA CBO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="trustee-card">
+                            <img src="allie.png" alt="Trustee 2"
+                                class="img-fluid mb-3">
+                            <p>Allie Assignment Help Center</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="trustee-card">
+                            <img style="width: 120px;" src="brian.jpg" alt="Trustee 3"
+                                class="img-fluid mb-3">
+                            <p>Brian Logistics LTD</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="trustee-card">
+                            <img src="digniflow.png" alt="Trustee 3" class="img-fluid mb-3">
+                            <p>DigniFlow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact Us</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-
-          <!-- <div class="col-lg-4">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-info">
+                        <h4>Get in Touch</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Remote</p>
+                        <p><i class="fas fa-phone"></i> +254792613079</p>
+                        <p><i class="fas fa-envelope"></i> kimonesmuske@gmail.com</p>
+                        <div class="social-links mt-4">
+                            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div> -->
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center info-item-borders">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+254792613079</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>kimonesmuske@gmail.com</p>
-            </div>
-          </div><!-- End Info Item -->
-
         </div>
+    </section>
 
-        <form action="" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-          <div class="row gy-4">
+    <!-- Footer -->
+    <footer class="text-light pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase fw-bold">KimTechnologie</h5>
+                    <p class="small">Your Trusted Partner in Digital Transformation. We empower businesses with innovative,
+                        scalable, and secure digital solutions.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4">
+                    <h5 class="text-uppercase fw-bold">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Web Development</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">IT Support</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Maintenance</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Consulting</a></li>
+                    </ul>
+                </div>
 
-            <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                <div class="col-md-2 mb-4">
+                    <h5 class="text-uppercase fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none d-block py-1">Home</a></li>
+                        <li><a href="#about" class="text-light text-decoration-none d-block py-1">About</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Services</a></li>
+                        <li><a href="#contact" class="text-light text-decoration-none d-block py-1">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Newsletter -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase fw-bold">Subscribe to Our Newsletter</h5>
+                    <p class="small">Get the latest updates, insights, and offers straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+    
+            <hr class="border-secondary">
+    
+            <!-- Footer Bottom -->
+            <div class="text-center small">
+                <p class="mb-0">&copy; 2024 <strong>KimTechnologie</strong>. All rights reserved. | Designed with ♥</p>
             </div>
-
-            <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-            </div>
-
-            <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-            </div>
-
-            <div class="col-md-12 text-center">
-              <button type="submit">Send Message</button>
-            </div>
-
-          </div>
-        </form><!-- End Contact Form -->
-
-      </div>
-
-    </section><!-- /Contact Section -->
-
-  </main>
-
-  <footer id="footer" class="footer dark-background">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Kim Technologies</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>Digital Solutions for a Smarter Future.</p>
-          </div>
         </div>
+    </footer>
+    
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Our Work</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX</a></li>
-            <li><a href="#">Cloud Solutions</a></li>
-            <li><a href="#">Consulting</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Social Media</h4>
-          <p>Follow and subscribe to our social media to receive the latest news about our services!</p>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-      </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
     </div>
 
-    <!-- <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">BizPage</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div> -->
+    <!-- Back to Top Button -->
+    <!-- <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button> -->
 
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
