@@ -10,7 +10,8 @@
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="KimTechnologie - Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
-    <meta name="keywords" content="technology, web design, kim technologies, web development, mobile apps, cloud solutions, software development">
+    <meta name="keywords"
+        content="technology, web design, kim technologies, web development, mobile apps, cloud solutions, software development">
     <meta name="author" content="Onesmus Kimanzi Muimi">
     <meta name="robots" content="index, follow">
 
@@ -40,11 +41,20 @@
 </head>
 
 <body>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                class="fa fa-close"></i></button>
+    </div>
+    {% endfor %}
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img style="display: none;" class="logo" src="{% static 'images/logoo1.png' %}" alt="Kim Technologies Logo">
-                <h1><b><span style="color: #A5075E;">K</span>im <span style="color: #036CB9;">T</span>echnologies</b></h1>
+                <img style="display: none;" class="logo" src="{% static 'images/logoo1.png' %}"
+                    alt="Kim Technologies Logo">
+                <h1><b><span style="color: #A5075E;">K</span>im <span style="color: #036CB9;">T</span>echnologies</b>
+                </h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -76,7 +86,7 @@
             </div>
         </div>
     </section>
-    
+
 
     <section id="about" class="py-5">
         <div class="container">
@@ -84,20 +94,26 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <p style="text-align: justify;">
-                        At <strong>Kim Technologies</strong>, we specialize in delivering smart, scalable, and secure digital solutions that
-                        help businesses succeed in today’s fast-paced, tech-driven world.
+                        At <strong>Kim Technologies</strong>, we specialize in delivering smart, scalable, and secure
+                        digital solutions that
+                        help businesses succeed in today's fast-paced, tech-driven world.
                         <br>
-                        Our core focus is on developing responsive websites, robust web and mobile applications, and providing dependable IT
-                        support services. Every solution we deliver is tailored to align with your unique business goals and built with
+                        Our core focus is on developing responsive websites, robust web and mobile applications, and
+                        providing dependable IT
+                        support services. Every solution we deliver is tailored to align with your unique business goals
+                        and built with
                         future-ready technologies.
                         <br>
-                        From startups looking to establish a strong online presence to enterprises aiming to optimize their operations, we
-                        are committed to creating solutions that are not only efficient and user-friendly but also scalable and built to
+                        From startups looking to establish a strong online presence to enterprises aiming to optimize
+                        their operations, we
+                        are committed to creating solutions that are not only efficient and user-friendly but also
+                        scalable and built to
                         last.
                         <br>
-                        Let us help you turn your ideas into impactful digital products — designed to drive growth, enhance performance, and
+                        Let us help you turn your ideas into impactful digital products — designed to drive growth,
+                        enhance performance, and
                         deliver real value.
-                    </p>                                      
+                    </p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <img src="{% static 'images/heroo.jpg' %}" alt="About Kim Technologies" class="img-fluid rounded">
@@ -161,7 +177,7 @@
         <div class="container">
             <h2 class="section-title text-center mb-5">Our Services</h2>
             <div class="row">
-    
+
                 <!-- Web Development -->
                 <div class="col-md-4 mb-4" data-aos="fade-up">
                     <div class="service-card text-center">
@@ -170,7 +186,7 @@
                         <p>Custom websites and applications built using modern, secure, and scalable technologies.</p>
                     </div>
                 </div>
-    
+
                 <!-- UI/UX Design -->
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card text-center">
@@ -179,7 +195,7 @@
                         <p>Intuitive and elegant designs crafted to maximize user engagement and usability.</p>
                     </div>
                 </div>
-    
+
                 <!-- IT Consulting -->
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-card text-center">
@@ -188,16 +204,17 @@
                         <p>Strategic guidance and technology planning to align your goals with the right solutions.</p>
                     </div>
                 </div>
-    
+
                 <!-- IT Support -->
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-card text-center">
                         <i class="fas fa-headset fa-3x mb-3"></i>
                         <h3>IT Support</h3>
-                        <p>Professional support and troubleshooting to keep your systems running at optimal performance.</p>
+                        <p>Professional support and troubleshooting to keep your systems running at optimal performance.
+                        </p>
                     </div>
                 </div>
-    
+
                 <!-- Payment Integrations -->
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-card text-center">
@@ -206,20 +223,21 @@
                         <p>Secure and seamless payment gateway integrations tailored to your business needs.</p>
                     </div>
                 </div>
-    
+
                 <!-- Maintenance -->
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-card text-center">
                         <i class="fas fa-tools fa-3x mb-3"></i>
                         <h3>Maintenance</h3>
-                        <p>Continuous monitoring and maintenance to ensure your digital assets remain up-to-date and high-performing.</p>
+                        <p>Continuous monitoring and maintenance to ensure your digital assets remain up-to-date and
+                            high-performing.</p>
                     </div>
                 </div>
-    
+
             </div>
         </div>
     </section>
-    
+
     <!-- Our Work Section -->
     <section id="work" class="py-5">
         <div class="container">
@@ -227,7 +245,8 @@
             <div class="row justify-content-center">
                 <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="work-card">
-                        <img src="{% static 'images/kamakowajamtaka.png' %}" alt="KAMAKOWA JAM TAKA CBO" class="img-fluid">
+                        <img src="{% static 'images/kamakowajamtaka.png' %}" alt="KAMAKOWA JAM TAKA CBO"
+                            class="img-fluid">
                         <div class="work-overlay">
                             <h6>KAMAKOWA JAM TAKA CBO</h6>
                             <a href="https://kamakowajamtaka.org/" target="_blank" class="project-icon">
@@ -238,7 +257,8 @@
                 </div>
                 <div class="col-md-3 mb-3" data-aos="fade-up">
                     <div class="work-card">
-                        <img src="{% static 'images/allie_web.png' %}" alt="Allie Assignment Help Center" class="img-fluid">
+                        <img src="{% static 'images/allie_web.png' %}" alt="Allie Assignment Help Center"
+                            class="img-fluid">
                         <div class="work-overlay">
                             <h6>Allie Assignment Help Center</h6>
                             <a href="https://allieassignmenthelp.com/" target="_blank" class="project-icon">
@@ -280,8 +300,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4" data-aos="fade-up">
                     <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 1"
-                            class="rounded-circle mb-3">
+                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 1" class="rounded-circle mb-3">
                         <p class="lead">"Amazing work and professional team. They delivered beyond our expectations."
                         </p>
                         <h5>Sarah Wilson</h5>
@@ -290,8 +309,7 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 2"
-                            class="rounded-circle mb-3">
+                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 2" class="rounded-circle mb-3">
                         <p class="lead">"The best technology partner we've worked with. Highly recommended!"</p>
                         <h5>David Brown</h5>
                         <p>CTO, InnovateInc</p>
@@ -299,8 +317,7 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 3"
-                            class="rounded-circle mb-3">
+                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 3" class="rounded-circle mb-3">
                         <p class="lead">"Outstanding service and support. They truly understand our business needs."</p>
                         <h5>Emily Chen</h5>
                         <p>Director, GlobalTech</p>
@@ -311,13 +328,14 @@
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testimonialModal">
                     Submit a Testimonial
                 </button>
-            </div>            
+            </div>
         </div>
     </section>
 
 
     <!-- Testimonial Modal -->
-    <div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel" aria-hidden="true">
+    <div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="testimonialForm">
@@ -326,27 +344,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-    
+
                         <div class="mb-3">
                             <label for="clientName" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="clientName" required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label for="clientRole" class="form-label">Title / Role</label>
                             <input type="text" class="form-control" id="clientRole">
                         </div>
-    
+
                         <div class="mb-3">
                             <label for="testimonialText" class="form-label">Your Testimonial</label>
                             <textarea class="form-control" id="testimonialText" rows="4" required></textarea>
                         </div>
-    
+
                         <div class="mb-3">
                             <label for="clientImage" class="form-label">Photo (optional)</label>
                             <input type="file" class="form-control" id="clientImage" accept="image/*">
                         </div>
-    
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Submit</button>
@@ -356,7 +374,7 @@
             </div>
         </div>
     </div>
-  
+
 
     <!-- FAQ Section -->
     <!-- <section id="faq" class="py-5 bg-light">
@@ -430,7 +448,7 @@
             </div>
         </div>
     </section> -->
-     
+
 
     <section id="call-to-action" class="py-5" style="background-color: #036CB9;">
         <div class="container text-center text-white">
@@ -444,10 +462,10 @@
             </a>
         </div>
     </section>
-    
+
 
     <!-- Trustees Section -->
-    <section id="trustees" class="py-5 bg-light">
+    <!-- <section id="trustees" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5">Our Clients</h2>
             <div class="trustees-slider">
@@ -482,7 +500,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- Contact Section -->
@@ -491,20 +509,24 @@
             <h2 class="section-title text-center mb-5">Contact Us</h2>
             <div class="row">
                 <div class="col-lg-6 mb-4" data-aos="fade-right">
-                    <form id="contactForm">
+                    <form method="post" action="{% url 'send_contact_email' %}">
+                        {% csrf_token %}
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Subject">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message"
+                                required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                        </button>
                     </form>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
@@ -512,7 +534,7 @@
                         <h4>Get in Touch</h4>
                         <p><i class="fas fa-map-marker-alt"></i> Remote</p>
                         <p><i class="fas fa-phone"></i> +254792613079</p>
-                        <p><i class="fas fa-envelope"></i> kimonesmuske@gmail.com</p>
+                        <p><i class="fas fa-envelope"></i> kimtechnologies1@gmail.com</p>
                         <div class="social-links mt-4">
                             <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="me-3"><i class="fab fa-x-twitter"></i></a>
@@ -532,7 +554,8 @@
                 <!-- Company Info -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold">KimTechnologie</h5>
-                    <p class="small">Your Trusted Partner in Digital Transformation. We empower businesses with innovative,
+                    <p class="small">Your Trusted Partner in Digital Transformation. We empower businesses with
+                        innovative,
                         scalable, and secure digital solutions.</p>
                     <div class="d-flex gap-3">
                         <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
@@ -541,14 +564,16 @@
                         <a href="#" class="text-light"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-    
+
                 <!-- Quick Links -->
                 <div class="col-md-2 mb-4">
                     <h5 class="text-uppercase fw-bold">Our Services</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Web Development</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Web Development</a>
+                        </li>
                         <li><a href="#services" class="text-light text-decoration-none d-block py-1">IT Support</a></li>
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Maintenance</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Maintenance</a>
+                        </li>
                         <li><a href="#services" class="text-light text-decoration-none d-block py-1">Consulting</a></li>
                     </ul>
                 </div>
@@ -562,7 +587,7 @@
                         <li><a href="#contact" class="text-light text-decoration-none d-block py-1">Contact</a></li>
                     </ul>
                 </div>
-    
+
                 <!-- Newsletter -->
                 <div class="col-md-4 mb-4">
                     <h5 class="text-uppercase fw-bold">Subscribe to Our Newsletter</h5>
@@ -575,16 +600,16 @@
                     </form>
                 </div>
             </div>
-    
+
             <hr class="border-secondary">
-    
+
             <!-- Footer Bottom -->
             <div class="text-center small">
                 <p class="mb-0">&copy; 2024 <strong>KimTechnologie</strong>. All rights reserved. | Designed with ♥</p>
             </div>
         </div>
     </footer>
-    
+
 
     <!-- Loading Overlay -->
     <div class="loading-overlay">
@@ -601,6 +626,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
 </body>
 
 </html>
