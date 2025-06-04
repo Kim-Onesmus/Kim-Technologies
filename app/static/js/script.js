@@ -161,22 +161,22 @@ window.addEventListener("load", function () {
 });
 
 // Back to Top Button
-// const backToTopButton = document.getElementById("backToTop");
+const backToTopButton = document.getElementById("backToTop");
 
-// window.addEventListener("scroll", () => {
-//   if (window.pageYOffset > 100) {
-//     backToTopButton.classList.add("show");
-//   } else {
-//     backToTopButton.classList.remove("show");
-//   }
-// });
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 100) {
+    backToTopButton.classList.add("show");
+  } else {
+    backToTopButton.classList.remove("show");
+  }
+});
 
-// backToTopButton.addEventListener("click", () => {
-//   window.scrollTo({
-//     top: 0,
-//     behavior: "smooth",
-//   });
-// });
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
 
 
 // Loading Overlay

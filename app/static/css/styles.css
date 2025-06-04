@@ -23,6 +23,8 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
   padding: 0.5rem 1rem;
+  width: 100%;
+  z-index: 1030;
 }
 
 .navbar-brand {
@@ -34,6 +36,41 @@ body {
   width: auto;
   height: 50px;
   max-width: 100%;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* .navbar-collapse {
+  background-color: var(--light-color);
+} */
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: var(--light-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav {
+    padding: 0.5rem 0;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -59,7 +96,7 @@ body {
 }
 
 .carousel-item {
-  height: 80vh;
+  height: 90vh;
   min-height: 400px;
   background: no-repeat center center scroll;
   background-size: cover;
@@ -99,7 +136,7 @@ body {
 
 .carousel-caption {
   position: absolute;
-  bottom: 30%;
+  bottom: 25%;
   left: 0;
   right: 0;
   padding-left: 100px;
@@ -493,7 +530,7 @@ footer a:hover {
 }
 
 /* Back to Top Button */
-/* .back-to-top {
+.back-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -531,7 +568,7 @@ footer a:hover {
     height: 45px;
     font-size: 18px;
   }
-} */
+}
 
 /* FAQ Section */
 .accordion-item {

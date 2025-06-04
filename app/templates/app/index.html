@@ -11,14 +11,14 @@
     <meta name="description"
         content="KimTechnologie - Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
     <meta name="keywords" content="technology, web design, kim technologies, web development, mobile apps, cloud solutions, software development">
-    <meta name="author" content="KimTechnologie">
+    <meta name="author" content="Onesmus Kimanzi Muimi">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Tags -->
     <meta property="og:title" content="KimTechnologie - Professional Profile">
     <meta name="description"
         content="KimTechnologie is a premier provider of innovative technology solutions, specializing in custom web development, mobile applications, IT consulting, and cloud-based services tailored to your business needs.">
-    <meta property="og:image" content="https://source.unsplash.com/1200x630/?technology">
+    <meta property="og:image" content="{% static 'images/fav1-01.png' %}">
     <meta property="og:url" content="https://kimtechnologie.com">
     <meta property="og:type" content="website">
 
@@ -27,23 +27,24 @@
     <meta name="twitter:title" content="KimTechnologie - Professional Profile">
     <meta name="twitter:description"
         content="Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
-    <meta name="twitter:image" content="https://source.unsplash.com/1200x630/?technology">
+    <meta name="twitter:image" content="{% static 'images/fav1-01.png' %}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="fav1-01.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="{% static 'images/fav1-01.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/fav1-01.png' %}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img class="logo" src="{% static 'images/logoo1.png' %}" alt="Kim Technologies Logo">
+                <img style="display: none;" class="logo" src="{% static 'images/logoo1.png' %}" alt="Kim Technologies Logo">
+                <h1><b><span style="color: #A5075E;">K</span>im <span style="color: #036CB9;">T</span>echnologies</b></h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -349,7 +350,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -591,12 +592,12 @@
     </div>
 
     <!-- Back to Top Button -->
-    <!-- <button id="backToTop" class="back-to-top">
+    <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
-    </button> -->
+    </button>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
