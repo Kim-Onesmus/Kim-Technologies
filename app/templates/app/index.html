@@ -338,7 +338,8 @@
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="testimonialForm">
+                <form id="testimonialForm" method="POST" action="{% url 'submit_testimonial' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title" id="testimonialModalLabel">Submit Your Testimonial</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -347,28 +348,33 @@
 
                         <div class="mb-3">
                             <label for="clientName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="clientName" required>
+                            <input type="text" name="name" placeholder="John Doe" class="form-control" id="clientName" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="clientRole" class="form-label">Organization / Company</label>
+                            <input type="text" name="organization" placeholder="Kim Technologies" class="form-control" id="clientRole">
                         </div>
 
                         <div class="mb-3">
                             <label for="clientRole" class="form-label">Title / Role</label>
-                            <input type="text" class="form-control" id="clientRole">
+                            <input type="text" name="role" placeholder="CEO" class="form-control" id="clientRole">
                         </div>
 
                         <div class="mb-3">
                             <label for="testimonialText" class="form-label">Your Testimonial</label>
-                            <textarea class="form-control" id="testimonialText" rows="4" required></textarea>
+                            <textarea class="form-control" name="testimony" id="testimonialText" rows="4" required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="clientImage" class="form-label">Photo (optional)</label>
-                            <input type="file" class="form-control" id="clientImage" accept="image/*">
+                            <input type="file" name="image" class="form-control" id="clientImage" accept="image/*">
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
