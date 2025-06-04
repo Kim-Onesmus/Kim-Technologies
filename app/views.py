@@ -10,17 +10,28 @@ import json
 
 # Create your views here.
 def Index(request):
-    return render(request, 'app/index.html')
+    testmonials = Testimonial.objects.filter(is_published=True)
+
+    context = {
+        'testmonials':testmonials
+    }
+    return render(request, 'app/index.html', context)
 
 
 def submit_testimonial(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         role = request.POST.get('role')
+        organization = request.POST.get('organization')
         testimony = request.POST.get('testimony')
         image = request.FILES.get('image')
 
-        testimonial = Testimonial.objects.create(name=name, role=role, testimony=testimony)
+        testimonial = Testimonial.objects.create(
+            name=name,
+            organization=organization,
+            role=role,
+            testimony=testimony
+        )
         if image:
             testimonial.image = image
         testimonial.save()

@@ -297,33 +297,21 @@
     <section id="testimonials" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5">Testimonials</h2>
+            {% if testmonials %}
             <div class="row">
+                {% for i in testmonials %}
                 <div class="col-md-4 mb-4" data-aos="fade-up">
                     <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 1" class="rounded-circle mb-3">
-                        <p class="lead">"Amazing work and professional team. They delivered beyond our expectations."
-                        </p>
-                        <h5>Sarah Wilson</h5>
-                        <p>CEO, TechCorp</p>
+                        <img src="{{ i.image.url }}" alt="{{ i.name }}" class="rounded-circle mb-3">
+                        <p style="text-align: justify;">{{ i.testimony }}</p>
+                        <h5>{{ i.name }}</h5>
+                        <p>{{ i.role }}, {{ i.organization }}</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 2" class="rounded-circle mb-3">
-                        <p class="lead">"The best technology partner we've worked with. Highly recommended!"</p>
-                        <h5>David Brown</h5>
-                        <p>CTO, InnovateInc</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-item text-center">
-                        <img src="{% static 'images/heroo.jpg' %}" alt="Client 3" class="rounded-circle mb-3">
-                        <p class="lead">"Outstanding service and support. They truly understand our business needs."</p>
-                        <h5>Emily Chen</h5>
-                        <p>Director, GlobalTech</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+            {% else %}
+            {% endif %}
             <div class="text-center mt-5">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testimonialModal">
                     Submit a Testimonial
@@ -542,10 +530,11 @@
                         <p><i class="fas fa-phone"></i> +254792613079</p>
                         <p><i class="fas fa-envelope"></i> kimtechnologies1@gmail.com</p>
                         <div class="social-links mt-4">
-                            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="me-3"><i class="fab fa-x-twitter"></i></a>
-                            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/kim.onesmus.37/" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://x.com/Kim_Techs" class="text-light"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/onesmus-muimi-b3a45535b/" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/Kim-Onesmus" class="text-light"><i class="fab fa-github"></i></a>
+                            <a href="https://wa.me/254792613079" class="text-light"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
@@ -564,10 +553,11 @@
                         innovative,
                         scalable, and secure digital solutions.</p>
                     <div class="d-flex gap-3">
-                        <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-light"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-light"><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com/kim.onesmus.37/" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/Kim_Techs" class="text-light"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/onesmus-muimi-b3a45535b/" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Kim-Onesmus" class="text-light"><i class="fab fa-github"></i></a>
+                        <a href="https://wa.me/254792613079" class="text-light"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 

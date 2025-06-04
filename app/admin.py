@@ -12,7 +12,7 @@ class TestimonialAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Client Info', {
-            'fields': ('name', 'role', 'image'),
+            'fields': ('name', 'role', 'image', 'organization'),
         }),
         ('Testimony Details', {
             'fields': ('testimony', 'is_published'),
