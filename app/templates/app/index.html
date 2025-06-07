@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="lg:w-1/2 animate-fade-up delay-300">
-                    <img src="{hero.jpg" alt="IT Solutions"
+                    <img src="{% static 'images/hero.jpg' %}" alt="IT Solutions"
                         class="rounded-2xl shadow-2xl w-full h-auto max-w-lg mx-auto">
                 </div>
             </div>
@@ -132,7 +132,7 @@
             <h2 class="text-4xl font-bold text-center mb-12 dark:text-white animate-fade-up">About Us</h2>
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
-                    <img src="about.jpg" alt="About Kim Technologies" class="rounded-lg shadow-lg">
+                    <img src="{% static 'images/about.jpg' %}" alt="About Kim Technologies" class="rounded-lg shadow-lg">
                 </div>
                 <div class="md:w-1/2">
                     <p class="text-gray-600 mb-6 dark:text-gray-300">At Kim Technologies, we specialize in delivering
@@ -264,7 +264,7 @@
             <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Our Work</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up">
-                    <img src="kamakowajamtaka.png" alt="KAMAKOWA JAM TAKA CBO" class="w-full h-48 object-cover">
+                    <img src="{% static 'images/kamakowajamtaka.png' %}" alt="KAMAKOWA JAM TAKA CBO" class="w-full h-48 object-cover">
                     <div class="p-6 bg-white dark:bg-gray-800">
                         <a href="">
                             <h3 class="text-xl font-bold mb-2 dark:text-white">KAMAKOWA JAM TAKA CBO</h3>
@@ -275,7 +275,7 @@
                     </div>
                 </div>
                 <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-100">
-                    <img src="allie_web.png" alt="Allie Assignment Help Center" class="w-full h-48 object-cover">
+                    <img src="{% static 'images/allie_web.png' %}" alt="Allie Assignment Help Center" class="w-full h-48 object-cover">
                     <div class="p-6 bg-white dark:bg-gray-800">
                         <a href="">
                             <h3 class="text-xl font-bold mb-2 dark:text-white">Allie Assignment Help Center</h3>
@@ -284,7 +284,7 @@
                     </div>
                 </div>
                 <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
-                    <img src="brianlog.png" alt="Brian Logistics LTD" class="w-full h-48 object-cover">
+                    <img src="{% static 'images/brianlog.png' %}" alt="Brian Logistics LTD" class="w-full h-48 object-cover">
                     <div class="p-6 bg-white dark:bg-gray-800">
                         <a href="">
                             <h3 class="text-xl font-bold mb-2 dark:text-white">Brian Logistics LTD</h3>
@@ -293,7 +293,7 @@
                     </div>
                 </div>
                 <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
-                    <img src="digniflows.png" alt="DigniFlow" class="w-full h-48 object-cover">
+                    <img src="{% static 'images/digniflows.png' %}" alt="DigniFlow" class="w-full h-48 object-cover">
                     <div class="p-6 bg-white dark:bg-gray-800">
                         <a href="">
                             <h3 class="text-xl font-bold mb-2 dark:text-white">DigniFlow</h3>
@@ -339,7 +339,7 @@
                             a Call</a>
                     </div>
                     <div class="relative">
-                        <img src="support.jpg" alt="Consultation" class="rounded-lg shadow-lg">
+                        <img src="{% static 'images/support.jpg' %}" alt="Consultation" class="rounded-lg shadow-lg">
                         <div
                             class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-lg shadow-lg animate-fade-up delay-200">
                             <p class="text-2xl font-bold">24/7</p>
@@ -625,7 +625,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
