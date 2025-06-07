@@ -24,18 +24,23 @@ def submit_testimonial(request):
         role = request.POST.get('role')
         organization = request.POST.get('organization')
         testimony = request.POST.get('testimony')
+        rating = request.POST.get('rating')
         image = request.FILES.get('image')
 
         testimonial = Testimonial.objects.create(
             name=name,
             organization=organization,
             role=role,
-            testimony=testimony
+            testimony=testimony,
+            rating=rating
         )
         if image:
             testimonial.image = image
         testimonial.save()
         messages.success(request, 'Testmonial submitted successfully!')
+        return redirect('/')
+    else:
+        messages.error(request, 'An error occured, please try again!')
         return redirect('/')
 
 

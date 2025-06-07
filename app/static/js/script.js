@@ -207,34 +207,3 @@ starRatingButtons.forEach((star) => {
     updateStarRating();
   });
 });
-
-// Handle form submission
-testimonialForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(testimonialForm);
-  const testimonial = {
-    name: formData.get("name"),
-    position: formData.get("position"),
-    rating: selectedRating,
-    text: formData.get("testimonial"),
-  };
-
-  // Here you would typically send the testimonial to your backend
-  console.log("New testimonial:", testimonial);
-
-  // For demo purposes, we'll just close the modal
-  closeModal();
-
-  // Show success message
-  const successMessage = document.createElement("div");
-  successMessage.className =
-    "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-up";
-  successMessage.textContent = "Thank you for your testimonial!";
-  document.body.appendChild(successMessage);
-
-  // Remove success message after 3 seconds
-  setTimeout(() => {
-    successMessage.remove();
-  }, 3000);
-});
