@@ -105,15 +105,6 @@ backToTopBtn.addEventListener("click", () => {
   });
 });
 
-// Form Submission
-const contactForm = document.getElementById("contactForm");
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // Add your form submission logic here
-  alert("Form submitted successfully!");
-  contactForm.reset();
-});
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

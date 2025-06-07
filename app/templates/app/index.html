@@ -375,13 +375,17 @@
                             <p class="text-gray-600 dark:text-gray-400">{{ i.role }}, {{ i.organization }}</p>
                         </div>
                     </div>
-                    <div class="text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    <div class="mb-4 text-yellow-500">
+                        {% with total_stars=5 %}
+                        {% for star in "12345" %}
+                        {% if forloop.counter <= i.rating %} <i class="fas fa-star"></i> {# Solid star #}
+                            {% else %}
+                            <i class="far fa-star"></i> {# Empty star #}
+                            {% endif %}
+                            {% endfor %}
+                            {% endwith %}
                     </div>
+                                       
                     <p class="text-gray-600 dark:text-gray-300">"{{ i.testimony }}"</p>
                 </div>
                 {% endfor %}
