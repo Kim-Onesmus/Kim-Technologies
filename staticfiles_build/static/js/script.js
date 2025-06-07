@@ -1,177 +1,104 @@
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-  duration: 1000,
-  once: true,
-  offset: 100,
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
 });
 
-// Counter Animation
-function animateCounter(element) {
-  const target = parseInt(element.textContent);
-  const duration = 2000; // 2 seconds
-  const step = target / (duration / 16); // 60fps
-  let current = 0;
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById("darkModeToggle");
+const html = document.documentElement;
 
-  const timer = setInterval(() => {
-    current += step;
-    if (current >= target) {
-      element.textContent = target + "+";
-      clearInterval(timer);
-    } else {
-      element.textContent = Math.floor(current) + "+";
-    }
-  }, 16);
+darkModeToggle.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  localStorage.setItem("darkMode", html.classList.contains("dark"));
+});
+
+// Check for saved dark mode preference
+if (localStorage.getItem("darkMode") === "true") {
+  html.classList.add("dark");
 }
 
-// Intersection Observer for Counter Animation
+// Stats Counter Animation
+const counters = document.querySelectorAll(".counter");
+const speed = 200;
+
+const animateCounter = (counter) => {
+  const target = parseInt(counter.getAttribute("data-target"));
+  let count = 0;
+  const increment = target / speed;
+
+  const updateCount = () => {
+    if (count < target) {
+      count += increment;
+      counter.innerText = Math.ceil(count);
+      setTimeout(updateCount, 1);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  updateCount();
+};
+
+// Scroll Animation Handler
+const handleScrollAnimation = () => {
+  const elements = document.querySelectorAll(
+    ".animate-fade-up, .animate-fade-in"
+  );
+  const windowHeight = window.innerHeight;
+  const triggerBottom = windowHeight * 0.8;
+
+  elements.forEach((element) => {
+    const elementTop = element.getBoundingClientRect().top;
+
+    if (elementTop < triggerBottom) {
+      element.classList.add("active");
+    } else {
+      element.classList.remove("active");
+    }
+  });
+};
+
+// Initial check for elements in view
+handleScrollAnimation();
+
+// Add scroll event listener
+window.addEventListener("scroll", handleScrollAnimation);
+
+// Stats counter observer
 const counterObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const counter = entry.target;
-        animateCounter(counter);
-        counterObserver.unobserve(counter);
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
       }
     });
   },
-  { threshold: 0.5 }
+  {
+    threshold: 0.5,
+  }
 );
 
-// Initialize Counter Animation
-document.querySelectorAll(".counter").forEach((counter) => {
+// Observe counters
+counters.forEach((counter) => {
   counterObserver.observe(counter);
 });
 
-// Smooth Scrolling for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  });
-});
-
-// Navbar Background Change on Scroll
-window.addEventListener("scroll", function () {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    navbar.classList.add("bg-white");
-    navbar.classList.remove("bg-light");
-  } else {
-    navbar.classList.add("bg-light");
-    navbar.classList.remove("bg-white");
-  }
-});
-
-// Form Submission Handler
-const contactForm = document.getElementById("contactForm");
-if (contactForm) {
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    // Add your form submission logic here
-    alert("Thank you for your message! We will get back to you soon.");
-    this.reset();
-  });
-}
-
-// Newsletter Form Handler
-const newsletterForm = document.querySelector(".newsletter-form");
-if (newsletterForm) {
-  newsletterForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    // Add your newsletter subscription logic here
-    alert("Thank you for subscribing to our newsletter!");
-    this.reset();
-  });
-}
-
-// Image Lazy Loading
-document.addEventListener("DOMContentLoaded", function () {
-  const lazyImages = document.querySelectorAll("img[data-src]");
-
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        observer.unobserve(img);
-      }
-    });
-  });
-
-  lazyImages.forEach((img) => imageObserver.observe(img));
-});
-
-// Mobile Menu Toggle
-const navbarToggler = document.querySelector(".navbar-toggler");
-const navbarCollapse = document.querySelector(".navbar-collapse");
-
-if (navbarToggler && navbarCollapse) {
-  navbarToggler.addEventListener("click", function () {
-    navbarCollapse.classList.toggle("show");
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener("click", function (e) {
-    if (
-      !navbarToggler.contains(e.target) &&
-      !navbarCollapse.contains(e.target)
-    ) {
-      navbarCollapse.classList.remove("show");
-    }
-  });
-}
-
-// Add active class to current navigation item
-function setActiveNavItem() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").slice(1) === current) {
-        link.classList.add("active");
-      }
-    });
-  });
-}
-
-// Initialize active navigation
-setActiveNavItem();
-
-// Add loading animation
-window.addEventListener("load", function () {
-  document.body.classList.add("loaded");
-});
-
 // Back to Top Button
-const backToTopButton = document.getElementById("backToTop");
+const backToTopBtn = document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    backToTopButton.classList.add("show");
+  if (window.pageYOffset > 300) {
+    backToTopBtn.classList.remove("hidden");
   } else {
-    backToTopButton.classList.remove("show");
+    backToTopBtn.classList.add("hidden");
   }
 });
 
-backToTopButton.addEventListener("click", () => {
+backToTopBtn.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
@@ -179,11 +106,95 @@ backToTopButton.addEventListener("click", () => {
 });
 
 
-// Loading Overlay
-window.addEventListener("load", () => {
-  const loadingOverlay = document.querySelector(".loading-overlay");
-  loadingOverlay.classList.add("fade-out");
-  setTimeout(() => {
-    loadingOverlay.style.display = "none";
-  }, 500);
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+      });
+      // Close mobile menu if open
+      mobileMenu.classList.add("hidden");
+    }
+  });
+});
+
+// Testimonial Modal Functionality
+const testimonialModal = document.getElementById("testimonialModal");
+const addTestimonialBtn = document.getElementById("addTestimonialBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const cancelTestimonialBtn = document.getElementById("cancelTestimonialBtn");
+const testimonialForm = document.getElementById("testimonialForm");
+const starRatingButtons = document.querySelectorAll(".star-rating");
+
+let selectedRating = 0;
+
+// Open modal
+addTestimonialBtn.addEventListener("click", () => {
+  testimonialModal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
+});
+
+// Close modal functions
+function closeModal() {
+  testimonialModal.classList.add("hidden");
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
+  testimonialForm.reset();
+  selectedRating = 0;
+  updateStarRating();
+}
+
+closeModalBtn.addEventListener("click", closeModal);
+cancelTestimonialBtn.addEventListener("click", closeModal);
+
+// Close modal when clicking outside
+testimonialModal.addEventListener("click", (e) => {
+  if (e.target === testimonialModal) {
+    closeModal();
+  }
+});
+
+// Prevent modal from closing when clicking inside the modal content
+testimonialModal.querySelector(".relative").addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+// Update star rating display
+function updateStarRating() {
+  starRatingButtons.forEach((star, index) => {
+    if (index < selectedRating) {
+      star.classList.add("text-yellow-400");
+      star.classList.remove("text-gray-300");
+    } else {
+      star.classList.remove("text-yellow-400");
+      star.classList.add("text-gray-300");
+    }
+  });
+}
+
+starRatingButtons.forEach((star) => {
+  star.addEventListener("click", () => {
+    selectedRating = parseInt(star.dataset.rating);
+    updateStarRating();
+  });
+
+  star.addEventListener("mouseover", () => {
+    const rating = parseInt(star.dataset.rating);
+    starRatingButtons.forEach((s, index) => {
+      if (index < rating) {
+        s.classList.add("text-yellow-400");
+        s.classList.remove("text-gray-300");
+      }
+    });
+  });
+
+  star.addEventListener("mouseout", () => {
+    updateStarRating();
+  });
 });
