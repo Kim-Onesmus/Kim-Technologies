@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -19,273 +19,331 @@
     <meta property="og:title" content="KimTechnologie - Professional Profile">
     <meta name="description"
         content="KimTechnologie is a premier provider of innovative technology solutions, specializing in custom web development, mobile applications, IT consulting, and cloud-based services tailored to your business needs.">
-    <meta property="og:image" content="{% static 'images/fav1-01.png' %}">
+    <meta property="og:image" content="og.png">
     <meta property="og:url" content="https://kimtechnologie.com">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KimTechnologie - Professional Profile">
+    <meta name="twitter:title" content="KimTechnologies">
     <meta name="twitter:description"
         content="Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
-    <meta name="twitter:image" content="{% static 'images/fav1-01.png' %}">
+    <meta name="twitter:image" content="og.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'images/fav1-01.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/fav1-01.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
-    {% for message in messages %}
-    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-                class="fa fa-close"></i></button>
-    </div>
-    {% endfor %}
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img style="display: none;" class="logo" src="{% static 'images/logoo1.png' %}"
-                    alt="Kim Technologies Logo">
-                <h1><b><span style="color: #A5075E;">K</span>im <span style="color: #036CB9;">T</span>echnologies</b>
-                </h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#work">Our Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
+<body class="font-sans">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white shadow-md z-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-2xl font-bold animate-fade-in">
+                    <img class="h-10 w-auto sm:h-12 transition-transform duration-200 hover:scale-105" src="{% static 'images/logo.png' %}"
+                        alt="Kim Technologies Logo">
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-primary dark:text-gray-300 nav-link">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary dark:text-gray-300 nav-link">About</a>
+                    <a href="#services"
+                        class="text-gray-600 hover:text-primary dark:text-gray-300 nav-link">Services</a>
+                    <a href="#work" class="text-gray-600 hover:text-primary dark:text-gray-300 nav-link">Our Work</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary dark:text-gray-300 nav-link">Contact</a>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <button id="darkModeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block py-2 text-gray-600 hover:text-primary dark:text-gray-300">Home</a>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-primary dark:text-gray-300">About</a>
+                <a href="#services" class="block py-2 text-gray-600 hover:text-primary dark:text-gray-300">Services</a>
+                <a href="#work" class="block py-2 text-gray-600 hover:text-primary dark:text-gray-300">Our Work</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-primary dark:text-gray-300">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero-section">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{% static 'images/herooo.jpg' %}" class="d-block w-100" alt="Kim Technologies Hero Image">
-                    <div class="carousel-caption">
-                        <h1>Your Trusted Partner in Digital Transformation</h1>
-                        <p>Empowering businesses through innovative, scalable, and secure technology solutions.</p><br>
-                        <a href="#contact" class="btn btn-primary">Get Started</a>
+    <!-- Hero Section -->
+    <section style="padding-left: 0; padding-right: 0;" class="relative py-20 bg-[#036CB9]">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+                    <h1 class="text-5xl font-bold text-white mb-6 animate-fade-up">Innovative IT Solutions for Your
+                        Business
+                    </h1><br><br>
+                    <p class="text-xl text-white mb-8 animate-fade-up delay-100">
+                        At Kim Technologies, we empower businesses to thrive in the digital age by delivering
+                        cutting-edge technology solutions
+                        and expert IT support tailored to their unique needs.
+                    </p><br><br><br>
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up delay-200">
+                        <a href="#contact"
+                            class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 btn-hover">Get
+                            Started</a>
+                        <a href="#services"
+                            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition duration-300 btn-hover">Our
+                            Services</a>
                     </div>
+                </div>
+                <div class="lg:w-1/2 animate-fade-up delay-300">
+                    <img src="{hero.jpg" alt="IT Solutions"
+                        class="rounded-2xl shadow-2xl w-full h-auto max-w-lg mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white animate-fade-up">About Us</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="about.jpg" alt="About Kim Technologies" class="rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <p class="text-gray-600 mb-6 dark:text-gray-300">At Kim Technologies, we specialize in delivering
+                        smart, scalable, and secure digital solutions that help businesses succeed in today's
+                        fast-paced, tech-driven world.</p>
+                    <p class="text-gray-600 mb-6 dark:text-gray-300">Our core focus is on developing responsive
+                        websites, robust web and mobile applications, and providing dependable IT support services.
+                        Every solution we deliver is tailored to align with your unique business goals and built with
+                        future-ready technologies.</p>
+                    <p class="text-gray-600 mb-6 dark:text-gray-300">From startups looking to establish a strong online
+                        presence to enterprises aiming to optimize their operations, we are committed to creating
+                        solutions that are not only efficient and user-friendly but also scalable and built to last.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-item animate-fade-up">
+                    <i class="fas fa-users text-4xl text-[#AD206E] mb-4"></i>
+                    <h3 class="text-3xl font-bold mb-2 dark:text-white counter" data-target="10">0</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Satisfied Clients</p>
+                </div>
+                <div class="stat-item animate-fade-up delay-100">
+                    <i class="fas fa-project-diagram text-4xl text-[#AD206E] mb-4"></i>
+                    <h3 class="text-3xl font-bold mb-2 dark:text-white counter" data-target="15">0</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Completed Projects</p>
+                </div>
+                <div class="stat-item animate-fade-up delay-200">
+                    <i class="fas fa-chart-line text-4xl text-[#AD206E] mb-4"></i>
+                    <h3 class="text-3xl font-bold mb-2 dark:text-white counter" data-target="98">0</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Client Satisfaction Rate</p>
+                </div>
+                <div class="stat-item animate-fade-up delay-300">
+                    <i class="fas fa-users-cog text-4xl text-[#AD206E] mb-4"></i>
+                    <h3 class="text-3xl font-bold mb-2 dark:text-white counter" data-target="3">0</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Skilled Team Members</p>
                 </div>
             </div>
         </div>
     </section>
 
 
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">About Us</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <p style="text-align: justify;">
-                        At <strong>Kim Technologies</strong>, we specialize in delivering smart, scalable, and secure
-                        digital solutions that
-                        help businesses succeed in today's fast-paced, tech-driven world.
-                        <br>
-                        Our core focus is on developing responsive websites, robust web and mobile applications, and
-                        providing dependable IT
-                        support services. Every solution we deliver is tailored to align with your unique business goals
-                        and built with
-                        future-ready technologies.
-                        <br>
-                        From startups looking to establish a strong online presence to enterprises aiming to optimize
-                        their operations, we
-                        are committed to creating solutions that are not only efficient and user-friendly but also
-                        scalable and built to
-                        last.
-                        <br>
-                        Let us help you turn your ideas into impactful digital products — designed to drive growth,
-                        enhance performance, and
-                        deliver real value.
-                    </p>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <img src="{% static 'images/heroo.jpg' %}" alt="About Kim Technologies" class="img-fluid rounded">
-                </div>
+    <section class="py-20 bg-[#036CB9] relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white animate-fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Digital Presence?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Join other satisfied clients who have already taken
+                    their business to the next level with our services.
+                </p>
+                <a href="#contact"
+                    class="bg-white text-[#036CB9] px-8 py-4 rounded-full font-semibold hover:bg-[#A5075E] hover:text-black transition duration-300 text-lg">
+                    Get Started Now
+                </a>
             </div>
         </div>
     </section>
 
 
-    <section id="numbers" class="py-5 bg-light">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-3" data-aos="fade-up">
-                    <div class="number-item">
-                        <i class="fas fa-heart fa-3x mb-3"></i>
-                        <h3 class="counter">10+</h3>
-                        <p>Satisfied Clients</p>
-                    </div>
+    <!-- Services Section -->
+    <section id="services" class="py-20 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white animate-fade-up">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up">
+                    <i class="fas fa-laptop-code text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Custom websites and applications built using modern,
+                        secure, and scalable technologies.</p>
                 </div>
-                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="number-item">
-                        <i class="fas fa-project-diagram fa-3x mb-3"></i>
-                        <h3 class="counter">15+</h3>
-                        <p>Completed Projects</p>
-                    </div>
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up delay-100">
+                    <i class="fas fa-paint-brush text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">UI/UX Design</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Intuitive and elegant designs crafted to maximize user
+                        engagement and usability.</p>
                 </div>
-                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="number-item">
-                        <i class="fas fa-award fa-3x mb-3"></i>
-                        <h3 class="counter">98%</h3>
-                        <p>Client Satisfaction Rate</p>
-                    </div>
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up delay-200">
+                    <i class="fas fa-comments text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Consulting</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Strategic guidance and technology planning to align your
+                        goals with the right solutions.</p>
                 </div>
-                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="number-item">
-                        <i class="fas fa-users fa-3x mb-3"></i>
-                        <h3 class="counter">3+</h3>
-                        <p>Skilled Team Members</p>
-                    </div>
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up delay-300">
+                    <i class="fas fa-headset text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">IT Support</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Professional support and troubleshooting to keep your
+                        systems running at optimal performance.</p>
+                </div>
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up delay-400">
+                    <i class="fas fa-credit-card text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Payment Integrations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Secure and seamless payment gateway integrations
+                        tailored to your business needs.</p>
+                </div>
+                <div class="service-card p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-fade-up delay-500">
+                    <i class="fas fa-tools text-4xl text-[#036CB9] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4 dark:text-white">Maintenance</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Continuous monitoring and maintenance to ensure your
+                        digital assets remain up-to-date and high-performing.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <section id="call-to-action" class="py-5" style="background-color: #036CB9;">
-        <div class="container text-center text-white">
-            <h2 class="mb-3">Partner With Us to Bring Your Vision to Life</h2>
-            <p class="mb-4">
-                Whether you're planning a new project or seeking expert consultation, we're here to collaborate with you
-                every step of the way. Let's connect and explore how we can deliver exceptional results together.
-            </p>
-            <a href="#contact" class="btn btn-lg" style="background-color: #A5075E; color: #fff; border: none;">
-                Schedule a Consultation
-            </a>
-        </div>
-    </section>
-
-
-    <section id="services" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Our Services</h2>
-            <div class="row">
-
-                <!-- Web Development -->
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="service-card text-center">
-                        <i class="fas fa-laptop-code fa-3x mb-3"></i>
-                        <h3>Web Development</h3>
-                        <p>Custom websites and applications built using modern, secure, and scalable technologies.</p>
-                    </div>
-                </div>
-
-                <!-- UI/UX Design -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card text-center">
-                        <i class="fas fa-pencil-ruler fa-3x mb-3"></i>
-                        <h3>UI/UX Design</h3>
-                        <p>Intuitive and elegant designs crafted to maximize user engagement and usability.</p>
-                    </div>
-                </div>
-
-                <!-- IT Consulting -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card text-center">
-                        <i class="fas fa-lightbulb fa-3x mb-3"></i>
-                        <h3>Consulting</h3>
-                        <p>Strategic guidance and technology planning to align your goals with the right solutions.</p>
-                    </div>
-                </div>
-
-                <!-- IT Support -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card text-center">
-                        <i class="fas fa-headset fa-3x mb-3"></i>
-                        <h3>IT Support</h3>
-                        <p>Professional support and troubleshooting to keep your systems running at optimal performance.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Payment Integrations -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card text-center">
-                        <i class="fas fa-credit-card fa-3x mb-3"></i>
-                        <h3>Payment Integrations</h3>
-                        <p>Secure and seamless payment gateway integrations tailored to your business needs.</p>
-                    </div>
-                </div>
-
-                <!-- Maintenance -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-card text-center">
-                        <i class="fas fa-tools fa-3x mb-3"></i>
-                        <h3>Maintenance</h3>
-                        <p>Continuous monitoring and maintenance to ensure your digital assets remain up-to-date and
-                            high-performing.</p>
-                    </div>
-                </div>
-
+    <!-- Clients Section -->
+    <!-- <section class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white animate-fade-up">Our Clients</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Client Logo" class="mx-auto animate-fade-up">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Client Logo" class="mx-auto animate-fade-up delay-100">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Client Logo" class="mx-auto animate-fade-up delay-200">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                    alt="Client Logo" class="mx-auto animate-fade-up delay-300">
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Our Work Section -->
-    <section id="work" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Our Work</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="work-card">
-                        <img src="{% static 'images/kamakowajamtaka.png' %}" alt="KAMAKOWA JAM TAKA CBO"
-                            class="img-fluid">
-                        <div class="work-overlay">
-                            <h6>KAMAKOWA JAM TAKA CBO</h6>
-                            <a href="https://kamakowajamtaka.org/" target="_blank" class="project-icon">
-                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
+    <section id="work" class="py-20 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Our Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up">
+                    <img src="kamakowajamtaka.png" alt="KAMAKOWA JAM TAKA CBO" class="w-full h-48 object-cover">
+                    <div class="p-6 bg-white dark:bg-gray-800">
+                        <a href="">
+                            <h3 class="text-xl font-bold mb-2 dark:text-white">KAMAKOWA JAM TAKA CBO</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Community-based organization website
+                                development.
+                            </p>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3" data-aos="fade-up">
-                    <div class="work-card">
-                        <img src="{% static 'images/allie_web.png' %}" alt="Allie Assignment Help Center"
-                            class="img-fluid">
-                        <div class="work-overlay">
-                            <h6>Allie Assignment Help Center</h6>
-                            <a href="https://allieassignmenthelp.com/" target="_blank" class="project-icon">
-                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
+                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-100">
+                    <img src="allie_web.png" alt="Allie Assignment Help Center" class="w-full h-48 object-cover">
+                    <div class="p-6 bg-white dark:bg-gray-800">
+                        <a href="">
+                            <h3 class="text-xl font-bold mb-2 dark:text-white">Allie Assignment Help Center</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Academic Help platform development.</p>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="work-card">
-                        <img src="{% static 'images/brianlog.png' %}" alt="Brian Logistics LTD" class="img-fluid">
-                        <div class="work-overlay">
-                            <h6>Brian Logistics LTD</h6>
-                            <a href="https://www.brianlogisticsltd.co.ke/" target="_blank" class="project-icon">
-                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
+                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
+                    <img src="brianlog.png" alt="Brian Logistics LTD" class="w-full h-48 object-cover">
+                    <div class="p-6 bg-white dark:bg-gray-800">
+                        <a href="">
+                            <h3 class="text-xl font-bold mb-2 dark:text-white">Brian Logistics LTD</h3>
+                            <p class="text-gray-600 dark:text-gray-300">Logistics management system development.</p>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="work-card">
-                        <img src="{% static 'images/digniflows.png' %}" alt="DigniFlow" class="img-fluid">
-                        <div class="work-overlay">
-                            <h6>DigniFlow</h6>
-                            <a href="https://www.digniflow.com/" target="_blank" class="project-icon">
-                                <i style="font-size: 20px;" class="fas fa-external-link-alt"></i>
-                            </a>
+                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
+                    <img src="digniflows.png" alt="DigniFlow" class="w-full h-48 object-cover">
+                    <div class="p-6 bg-white dark:bg-gray-800">
+                        <a href="">
+                            <h3 class="text-xl font-bold mb-2 dark:text-white">DigniFlow</h3>
+                            <p class="text-gray-600 dark:text-gray-300">E-Commerce system development.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Second CTA Section -->
+    <section class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 md:p-12 animate-fade-up">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Partner With Us for Business
+                            Success
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Let us help you bring your ideas to life with tailored digital solutions designed to elevate
+                            your brand and grow
+                            your business.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-[#036CB9] mr-3"></i>
+                                Free Initial Consultation
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-[#036CB9] mr-3"></i>
+                                Detailed Project Quote
+                            </li>
+                            <li class="flex items-center text-gray-600 dark:text-gray-300">
+                                <i class="fas fa-check-circle text-[#036CB9] mr-3"></i>
+                                No Hidden Fees
+                            </li>
+                        </ul>
+                        <a href="#contact"
+                            class="bg-[#036CB9] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#A5075E] hover:text-black transition duration-300 btn-hover inline-block">Schedule
+                            a Call</a>
+                    </div>
+                    <div class="relative">
+                        <img src="support.jpg" alt="Consultation" class="rounded-lg shadow-lg">
+                        <div
+                            class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-lg shadow-lg animate-fade-up delay-200">
+                            <p class="text-2xl font-bold">24/7</p>
+                            <p class="text-sm">Support Available</p>
                         </div>
                     </div>
                 </div>
@@ -294,27 +352,40 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Testimonials</h2>
+    <section class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">What Our Clients Say</h2>
             {% if testmonials %}
-            <div class="row">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
                 {% for i in testmonials %}
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="testimonial-item text-center">
-                        <img src="{{ i.image.url }}" alt="{{ i.name }}" class="rounded-circle mb-3">
-                        <p style="text-align: justify;">{{ i.testimony }}</p>
-                        <h5>{{ i.name }}</h5>
-                        <p>{{ i.role }}, {{ i.organization }}</p>
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 animate-fade-up">
+                    <div class="flex items-center mb-4">
+                        <img src="{{ i.image.url }}" alt="{{ i.name }}, {{ i.role }}, {{ i.organization }}"
+                            class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold dark:text-white">{{ i.name }}</h4>
+                            <p class="text-gray-600 dark:text-gray-400">{{ i.role }}, {{ i.organization }}</p>
+                        </div>
                     </div>
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"{{ i.testimony }}"</p>
                 </div>
                 {% endfor %}
             </div>
             {% else %}
             {% endif %}
-            <div class="text-center mt-5">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testimonialModal">
-                    Submit a Testimonial
+            <!-- Add Testimonial Button -->
+            <div class="text-center mt-12">
+                <button id="addTestimonialBtn"
+                    class="bg-[#036CB9] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#A5075E] hover:text-black transition duration-300 btn-hover">
+                    <i class="fas fa-plus mr-2"></i>Add Your Testimonial
                 </button>
             </div>
         </div>
@@ -322,307 +393,239 @@
 
 
     <!-- Testimonial Modal -->
-    <div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="testimonialForm" method="POST" action="{% url 'submit_testimonial' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="testimonialModalLabel">Submit Your Testimonial</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div id="testimonialModal" class="fixed inset-0 bg-black bg-opacity-50 z-[9999] hidden">
+        <div class="fixed inset-0 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <div
+                    class="relative transform overflow-hidden rounded-2xl bg-white dark:bg-gray-900 text-left shadow-xl transition-all w-full max-w-md">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold dark:text-white">Add Your Testimonial</h3>
+                            <button id="closeModalBtn"
+                                class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        <form id="testimonialForm" class="space-y-4" method="POST"
+                            action="{% url 'submit_testimonial' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                                <input type="text" name="name" placeholder="Onesmus Kimanzi"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Your Position</label>
+                                <input type="text" name="role" placeholder="CEO"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Organization</label>
+                                <input type="text" name="organization" placeholder="Kim Technologies"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Rating</label>
+                                <input type="number" name="rating"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Photo</label>
+                                <input type="file" name="image" placeholder="Selfie"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300 mb-2">Your Testimonial</label>
+                                <textarea name="testimonial" rows="4"
+                                    class="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white"
+                                    required></textarea>
+                            </div>
+                            <div class="flex justify-end space-x-4">
+                                <button type="button" id="cancelTestimonialBtn"
+                                    class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">Cancel</button>
+                                <button type="submit"
+                                    class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary">Submit</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-body">
-
-                        <div class="mb-3">
-                            <label for="clientName" class="form-label">Full Name</label>
-                            <input type="text" name="name" placeholder="John Doe" class="form-control" id="clientName" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="clientRole" class="form-label">Organization / Company</label>
-                            <input type="text" name="organization" placeholder="Kim Technologies" class="form-control" id="clientRole">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="clientRole" class="form-label">Title / Role</label>
-                            <input type="text" name="role" placeholder="CEO" class="form-control" id="clientRole">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="testimonialText" class="form-label">Your Testimonial</label>
-                            <textarea class="form-control" name="testimony" id="testimonialText" rows="4" required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="clientImage" class="form-label">Photo (optional)</label>
-                            <input type="file" name="image" class="form-control" id="clientImage" accept="image/*">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <!-- FAQ Section -->
-    <!-- <section id="faq" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Frequently Asked Questions</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="accordion" id="faqAccordion">
-                        <div class="accordion-item" data-aos="fade-up">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
-                                    What services do you offer?
-                                </button>
-                            </h3>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    We offer a comprehensive range of technology services including web development,
-                                    mobile app development, cloud solutions, and custom software development tailored to
-                                    your specific needs.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
-                                    How long does a typical project take?
-                                </button>
-                            </h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Project timelines vary depending on complexity and scope. A typical web project
-                                    takes 4-8 weeks, while mobile apps may take 8-12 weeks. We'll provide a detailed
-                                    timeline during our initial consultation.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq3">
-                                    What is your pricing structure?
-                                </button>
-                            </h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    We offer flexible pricing models including fixed-price projects, time and materials,
-                                    and retainer agreements. Contact us for a detailed quote based on your specific
-                                    requirements.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq4">
-                                    Do you provide ongoing support?
-                                </button>
-                            </h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Yes, we offer comprehensive support and maintenance packages to ensure your
-                                    solutions remain up-to-date and perform optimally. Our support team is available
-                                    24/7 for critical issues.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Third CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center animate-fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Transform Your Vision into a Powerful Digital Solution
+                </h2>
+                <p class="text-xl mb-8 text-gray-300">
+                    Ready to elevate your brand? Partner with our expert team to develop tailored digital solutions that
+                    deliver real business results.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact"
+                        class="bg-[#036CB9] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#A5075E] hover:text-black transition duration-300 btn-hover text-lg">
+                        Request a Free Consultation
+                    </a>
+                    <a href="tel:+254792613079"
+                        class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-[#A5075E] hover:text-black transition duration-300 btn-hover text-lg">
+                        <i class="fas fa-phone mr-2"></i>Speak to an Expert
+                    </a>
                 </div>
             </div>
-        </div>
-    </section> -->
-
-
-    <section id="call-to-action" class="py-5" style="background-color: #036CB9;">
-        <div class="container text-center text-white">
-            <h2 class="mb-3">Accelerate Your Business with a Trusted Digital Partner</h2>
-            <p class="mb-4">
-                Looking to enhance your operations, expand your digital presence, or launch a new solution? Our team is
-                ready to deliver tailored strategies that drive real business results.
-            </p>
-            <a href="#contact" class="btn btn-lg" style="background-color: #A5075E; color: #fff; border: none;">
-                Connect with Our Experts
-            </a>
         </div>
     </section>
 
 
-    <!-- Trustees Section -->
-    <!-- <section id="trustees" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Our Clients</h2>
-            <div class="trustees-slider">
-                <div class="row">
-                    <div class="col-md-3 mb-4" data-aos="fade-up">
-                        <div class="trustee-card">
-                            <img style="width: 120px;" src="{% static 'images/kamakowa.png' %}" alt="Kamakowa Jam Taka CBO"
-                                class="img-fluid  mb-3">
-                            <p>KAMAKOWA JAM TAKA CBO</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="trustee-card">
-                            <img src="{% static 'images/allie.png' %}" alt="Allie Assignment Help Center"
-                                class="img-fluid mb-3">
-                            <p>Allie Assignment Help Center</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="trustee-card">
-                            <img style="width: 120px;" src="{% static 'images/brian.jpg' %}" alt="Brian Logistics LTD"
-                                class="img-fluid mb-3">
-                            <p>Brian Logistics LTD</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="trustee-card">
-                            <img src="{% static 'images/digniflow.png' %}" alt="DigniFlow" class="img-fluid mb-3">
-                            <p>DigniFlow</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
     <!-- Contact Section -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Contact Us</h2>
-            <div class="row">
-                <div class="col-lg-6 mb-4" data-aos="fade-right">
-                    <form method="post" action="{% url 'send_contact_email' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+    <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Contact Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="contact-info">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-4 dark:text-white">Get in Touch</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Whether you're planning a new project or seeking expert consultation,
+                            we're here to collaborate with you every step of the way.
+                        </p>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-map-marker-alt text-[#036CB9] mr-4"></i>
+                            <span class="dark:text-gray-300">Remote</span>
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-phone text-[#036CB9] mr-4"></i>
+                            <span class="dark:text-gray-300">+254792613079</span>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-envelope text-[#036CB9] mr-4"></i>
+                            <span class="dark:text-gray-300">kimtechnologies1@gmail.com</span>
                         </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <span class="btn-text">Send Message</span>
-                        </button>
-                    </form>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="contact-info">
-                        <h4>Get in Touch</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Remote</p>
-                        <p><i class="fas fa-phone"></i> +254792613079</p>
-                        <p><i class="fas fa-envelope"></i> kimtechnologies1@gmail.com</p>
-                        <div class="social-links mt-4">
-                            <a href="https://www.facebook.com/kim.onesmus.37/" class="text-light"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://x.com/Kim_Techs" class="text-light"><i class="fab fa-x-twitter"></i></a>
-                            <a href="https://www.linkedin.com/in/onesmus-muimi-b3a45535b/" class="text-light"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://github.com/Kim-Onesmus" class="text-light"><i class="fab fa-github"></i></a>
-                            <a href="https://wa.me/254792613079" class="text-light"><i class="fab fa-whatsapp"></i></a>
+
+                        <!-- Social Media Icons -->
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/kim.onesmus.37/" target="_blank" aria-label="Facebook"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://x.com/Kim_Techs" target="_blank" aria-label="Twitter"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/onesmus-muimi-b3a45535b/" target="_blank"
+                                aria-label="LinkedIn"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-instagram"></i>
+                            </a><br><br>
+                            <a href="https://github.com/Kim-Onesmus" target="_blank" aria-label="Instagram"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://wa.me/254792613079" target="_blank" aria-label="Instagram"
+                                class="text-[#036CB9] hover:text-[#A5075E] dark:text-gray-300 dark:hover:text-white text-3xl">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+                <form id="contactForm" class="space-y-6" method="post" action="{% url 'send_contact_email' %}">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" placeholder="Your Name" name="name"
+                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 dark:text-white form-input"
+                            required>
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Your Email" name="email"
+                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 dark:text-white form-input"
+                            required>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Subject" name="subject"
+                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 dark:text-white form-input"
+                            required>
+                    </div>
+                    <div>
+                        <textarea placeholder="Your Message" rows="5" name="message"
+                            class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 dark:text-white form-input"
+                            required></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-[#036CB9] text-white hover:bg-[#A5075E] hover:text-black px-8 py-3 rounded-full font-semibold transition duration-300 btn-hover">Send
+                        Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="text-light pt-5 pb-4">
-        <div class="container">
-            <div class="row">
-                <!-- Company Info -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold">KimTechnologie</h5>
-                    <p class="small">Your Trusted Partner in Digital Transformation. We empower businesses with
-                        innovative,
-                        scalable, and secure digital solutions.</p>
-                    <div class="d-flex gap-3">
-                        <a href="https://www.facebook.com/kim.onesmus.37/" class="text-light"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/Kim_Techs" class="text-light"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/onesmus-muimi-b3a45535b/" class="text-light"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Kim-Onesmus" class="text-light"><i class="fab fa-github"></i></a>
-                        <a href="https://wa.me/254792613079" class="text-light"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <b><span style="color: #A5075E;">K</span>im <span
+                                style="color: #036CB9;">T</span>echnologies</b>
+                    </h3>
+                    <p class="text-gray-400">Your Trusted Partner in Digital Transformation. We empower businesses with
+                        innovative, scalable, and secure digital solutions.</p>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="col-md-2 mb-4">
-                    <h5 class="text-uppercase fw-bold">Our Services</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Web Development</a>
-                        </li>
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">IT Support</a></li>
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Maintenance</a>
-                        </li>
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Consulting</a></li>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Our Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">IT Support</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Maintenance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Consulting</a></li>
                     </ul>
                 </div>
-
-                <div class="col-md-2 mb-4">
-                    <h5 class="text-uppercase fw-bold">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#home" class="text-light text-decoration-none d-block py-1">Home</a></li>
-                        <li><a href="#about" class="text-light text-decoration-none d-block py-1">About</a></li>
-                        <li><a href="#services" class="text-light text-decoration-none d-block py-1">Services</a></li>
-                        <li><a href="#contact" class="text-light text-decoration-none d-block py-1">Contact</a></li>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
                     </ul>
                 </div>
-
-                <!-- Newsletter -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase fw-bold">Subscribe to Our Newsletter</h5>
-                    <p class="small">Get the latest updates, insights, and offers straight to your inbox.</p>
-                    <form class="newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Enter your email" required>
-                            <button class="btn btn-primary" type="submit">Subscribe</button>
-                        </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Subscribe to Our Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Get the latest updates, insights, and offers straight to your inbox.
+                    </p>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="Enter your email"
+                            class="px-4 py-2 rounded-lg bg-gray-800 text-white flex-grow">
+                        <button type="submit"
+                            class="bg-[#036CB9] text-white px-4 py-2 rounded-lg hover:bg-[#A5075E] transition duration-300">Subscribe</button>
                     </form>
                 </div>
             </div>
-
-            <hr class="border-secondary">
-
-            <!-- Footer Bottom -->
-            <div class="text-center small">
-                <p class="mb-0">&copy; 2024 <strong>KimTechnologie</strong>. All rights reserved. | Designed with ♥</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 KimTechnologie. All rights reserved. | Designed with <span
+                        class="text-[#A5075E]">♥</span></p>
             </div>
         </div>
     </footer>
 
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
-
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">
+    <button id="backToTop"
+        class="fixed bottom-8 right-8 bg-[#036CB9] text-white p-3 rounded-full hidden hover:bg-[#A5075E] transition duration-300 btn-hover">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
