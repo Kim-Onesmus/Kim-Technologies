@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from .models import Testimonial
+import threading
 import json
 
 # Create your views here.
@@ -44,35 +45,37 @@ def submit_testimonial(request):
         return redirect('/')
 
 
+def send_email_background(subject, message, recipient_list):
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        recipient_list,
+        fail_silently=False,
+    )
+
+
 def send_contact_email(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        subject = request.POST['subject']
-        message = request.POST['message']
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
 
-        # Validate required fields
         if not all([name, email, subject, message]):
             messages.error(request, 'All fields are required')
             return redirect('/')
 
-        email_subject = f"Kim Technologies Contact: {subject}"
-        email_message = f"""
+        # Admin notification
+        admin_subject = f"Kim Technologies Contact: {subject}"
+        admin_message = f"""
         Name: {name}
         Email: {email}
         Subject: {subject}
-        
         Message: {message}
         """
 
-        send_mail(
-            email_subject,
-            email_message,
-            settings.DEFAULT_FROM_EMAIL,
-            [settings.DEFAULT_FROM_EMAIL],
-            fail_silently=False,
-        )
-
+        # User acknowledgment
         user_subject = "Thank you for contacting Kim Technologies"
         user_message = f"""
         Dear {name},
@@ -87,13 +90,9 @@ def send_contact_email(request):
         Kim Technologies Team
         """
 
-        send_mail(
-            user_subject,
-            user_message,
-            settings.DEFAULT_FROM_EMAIL,
-            [email],
-            fail_silently=False,
-        )
+        # Send emails in background threads
+        threading.Thread(target=send_email_background, args=(admin_subject, admin_message, [settings.DEFAULT_FROM_EMAIL])).start()
+        threading.Thread(target=send_email_background, args=(user_subject, user_message, [email])).start()
 
         messages.success(request, 'Message sent successfully! We will get back to you soon.')
         return redirect('/')
