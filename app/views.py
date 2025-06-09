@@ -5,7 +5,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from .models import Testimonial
+from .models import Testimonial, Subscribe
 import threading
 import json
 
@@ -100,3 +100,10 @@ def send_contact_email(request):
     else:
         messages.error(request, 'Method not allowed')
         return redirect('/')
+    
+
+def Subscribe(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+
+        if 
