@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Testimonial
+from .models import Testimonial, Subscribe
+
+@admin.register(Subscribe)
+class SubscribeAdmin(admin.ModelAdmin):
+    list_display = ('email',)
+    fields = ('email',)
 
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
@@ -21,3 +26,5 @@ class TestimonialAdmin(admin.ModelAdmin):
             'fields': ('date_created',),
         }),
     )
+
+

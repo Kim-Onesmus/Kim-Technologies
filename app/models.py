@@ -15,3 +15,9 @@ class Testimonial(models.Model):
         return f'{self.name} - {self.role}'
     
     
+class Subscribe(models.Model):
+    email = models.EmailField(max_length=200)
+
+
+    def __str__(self):
+        return self.email
