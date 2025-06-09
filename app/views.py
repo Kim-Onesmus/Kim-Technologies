@@ -107,9 +107,13 @@ def SubScribe(request):
         email = request.POST['email']
 
         if Subscribe.objects.filter(email=email).exists():
-            messages.error(request, 'You have already subscribed to Kim Technologies news letter')
+            messages.error(request, 'You already subscribed to Kim Technologies news letter')
             return redirect('/')
         else:
+            sub_info = Subscribe.objects.create(
+                email=email
+            )
+            sub_info.save()
             messages.success(request, 'Thank you for subscribing to our news letter')
             return redirect('/')
     else:
