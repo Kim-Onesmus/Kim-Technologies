@@ -102,8 +102,16 @@ def send_contact_email(request):
         return redirect('/')
     
 
-def Subscribe(request):
+def SubScribe(request):
     if request.method == 'POST':
         email = request.POST['email']
 
-        if 
+        if Subscribe.objects.filter(email=email).exists():
+            messages.error(request, 'You have already subscribed to Kim Technologies news letter')
+            return redirect('/')
+        else:
+            messages.success(request, 'Thank you for subscribing to our news letter')
+            return redirect('/')
+    else:
+        messages.error(request, 'An error occured while subscribing to our news letter')
+        return redirect('/')
