@@ -3,41 +3,51 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
+    <!-- Basic Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kim Technologies</title>
+    <title>Kim Technologies | Web Development & Cloud Solutions</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="KimTechnologie - Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
+        content="Kim Technologies is a leading provider of innovative technology solutions, including web development, mobile apps, IT consulting, and cloud services tailored for businesses.">
     <meta name="keywords"
-        content="Kim, Kim Technologies, Onesmus Kimanzi Muimi, technology, web design, kim technologies, web development, mobile apps, cloud solutions, software development">
+        content="Kim Technologies, Onesmus Kimanzi Muimi, technology solutions, web development, mobile apps, cloud computing, IT consulting, software development">
     <meta name="author" content="Onesmus Kimanzi Muimi">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Kim Technologies">
-    <meta name="description"
-        content="KimTechnologie is a premier provider of innovative technology solutions, specializing in custom web development, mobile applications, IT consulting, and cloud-based services tailored to your business needs.">
+    <!-- Open Graph Meta (for Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="Kim Technologies | Web & Cloud Solutions">
+    <meta property="og:description"
+        content="Kim Technologies delivers custom web, mobile, and cloud-based solutions that elevate your business.">
     <meta property="og:image" content="https://kimtechnologies.org/static/images/og.png">
     <meta property="og:url" content="https://kimtechnologies.org/">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Card Tags -->
+    <!-- Twitter Card Meta -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kim Technologies">
+    <meta name="twitter:title" content="Kim Technologies | Web & Cloud Experts">
     <meta name="twitter:description"
-        content="Leading technology solutions provider specializing in web development, mobile apps, and cloud solutions.">
+        content="Innovative tech solutions provider: web development, mobile apps, and cloud infrastructure.">
     <meta name="twitter:image" content="https://kimtechnologies.org/static/images/og.png">
 
-    <!-- Favicon -->
+    <!-- Verification & Favicon -->
+    <meta name="google-site-verification" content="Q6etGBs-vhKwWlW124PebAevsfjoyNbF5j2dzTDdVQw" />
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
 
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Tailwind CSS and Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <meta name="google-site-verification" content="Q6etGBs-vhKwWlW124PebAevsfjoyNbF5j2dzTDdVQw" />
+
+    <!-- Tailwind Custom Theme -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -52,6 +62,7 @@
         }
     </script>
 </head>
+
 
 <body class="font-sans">
     {% for message in messages %}
