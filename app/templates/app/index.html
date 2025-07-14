@@ -277,52 +277,63 @@
         </div>
     </section> -->
 
-    <!-- Our Work Section -->
-    <section id="work" class="py-20 dark:bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Our Work</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up">
-                    <img src="{% static 'images/kamakowajamtaka.png' %}" alt="KAMAKOWA JAM TAKA CBO" class="w-full h-48 object-cover">
-                    <div class="p-6 bg-white dark:bg-gray-800">
-                        <a href="https://kamakowajamtaka.org/">
-                            <h3 class="text-xl font-bold mb-2 dark:text-white">KAMAKOWA JAM TAKA CBO</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Community-based organization website
-                                development.
-                            </p>
-                        </a>
+<section id="work" class="py-20 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Our Work</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1 -->
+            <div class="group relative rounded-lg overflow-hidden shadow-lg animate-fade-up bg-white">
+                <img src="{% static 'images/mamlo.png' %}" alt="MAMLO FOODS"
+                    class="w-full h-auto max-h-64 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <!-- Hover Overlay -->
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 class="text-white text-lg font-semibold mb-2">MAMLO FOODS</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">React</span>
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">Django</span>
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">Tailwind</span>
                     </div>
                 </div>
-                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-100">
-                    <img src="{% static 'images/allie_web.png' %}" alt="Allie Assignment Help Center" class="w-full h-48 object-cover">
-                    <div class="p-6 bg-white dark:bg-gray-800">
-                        <a href="https://allieassignmenthelp.com/">
-                            <h3 class="text-xl font-bold mb-2 dark:text-white">Allie Assignment Help Center</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Academic Help platform development.</p>
-                        </a>
+                <!-- Clickable Link -->
+                <a href="https://www.mamlofoods.com/" target="_blank" class="absolute inset-0 z-10"></a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group relative rounded-lg overflow-hidden shadow-lg animate-fade-up delay-100 bg-white">
+                <img src="{% static 'images/jubilee.png' %}" alt="Jubilee College"
+                    class="w-full h-auto max-h-64 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 class="text-white text-lg font-semibold mb-2">Jubilee College</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">Laravel</span>
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">Bootstrap</span>
                     </div>
                 </div>
-                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
-                    <img src="{% static 'images/brianlog.png' %}" alt="Brian Logistics LTD" class="w-full h-48 object-cover">
-                    <div class="p-6 bg-white dark:bg-gray-800">
-                        <a href="https://www.brianlogisticsltd.co.ke/">
-                            <h3 class="text-xl font-bold mb-2 dark:text-white">Brian Logistics LTD</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Logistics management system development.</p>
-                        </a>
+                <a href="https://jubileecollege.ac.ke/" target="_blank" class="absolute inset-0 z-10"></a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group relative rounded-lg overflow-hidden shadow-lg animate-fade-up delay-300 bg-white">
+                <img src="{% static 'images/digniflows.png' %}" alt="DigniFlow"
+                    class="w-full h-auto max-h-64 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 class="text-white text-lg font-semibold mb-2">DigniFlow</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">WordPress</span>
+                        <span class="bg-white/20 text-white px-3 py-1 text-sm rounded-full">PHP</span>
                     </div>
                 </div>
-                <div class="work-card overflow-hidden rounded-lg shadow-lg animate-fade-up delay-200">
-                    <img src="{% static 'images/digniflows.png' %}" alt="DigniFlow" class="w-full h-48 object-cover">
-                    <div class="p-6 bg-white dark:bg-gray-800">
-                        <a href="https://www.digniflow.com/">
-                            <h3 class="text-xl font-bold mb-2 dark:text-white">DigniFlow</h3>
-                            <p class="text-gray-600 dark:text-gray-300">E-Commerce system development.</p>
-                        </a>
-                    </div>
-                </div>
+                <a href="https://www.digniflow.com/" target="_blank" class="absolute inset-0 z-10"></a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 
     <!-- Second CTA Section -->
