@@ -6,7 +6,7 @@
     <!-- Basic Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kim Technologies | Web Development & Cloud Solutions</title>
+    <title>Kim Technologies Group | Web Development & Cloud Solutions</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
@@ -417,31 +417,81 @@
 
 
 
-<!-- Clients Section -->
-<section class="py-20 bg-gray-100 dark:bg-gray-800">
+
+<!-- Trusted Partners Section -->
+<section id="partners" class="py-20 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-4 dark:text-white animate-fade-up">
-            Trusted By
-        </h2>
 
-        <p class="text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto mb-12 animate-fade-up">
-            We collaborate with businesses, startups, and organizations to build
-            practical digital solutions that support their goals.
-        </p>
+        <div class="text-center mb-12 animate-fade-up">
+            <span class="inline-block text-sm font-semibold uppercase tracking-[0.2em] mb-3" style="color: #036CB9;">
+                Our Network
+            </span>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Client Logo" class="mx-auto h-20 w-full max-w-[180px] object-contain animate-fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                Trusted By
+            </h2>
 
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Client Logo" class="mx-auto h-20 w-full max-w-[180px] object-contain animate-fade-up delay-100">
-
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Client Logo" class="mx-auto h-20 w-full max-w-[180px] object-contain animate-fade-up delay-200">
-
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                alt="Client Logo" class="mx-auto h-20 w-full max-w-[180px] object-contain animate-fade-up delay-300">
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                We collaborate with businesses, startups, and organizations
+                to build practical digital solutions that support their goals.
+            </p>
         </div>
+
+        {% if partners %}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 items-stretch">
+
+            {% for partner in partners %}
+            <div class="group flex flex-col items-center justify-center min-h-[150px] p-6
+                        bg-white dark:bg-gray-900 rounded-2xl border border-gray-200
+                        dark:border-gray-700 shadow-sm hover:shadow-lg
+                        hover:-translate-y-1 transition-all duration-300 animate-fade-up">
+
+                {% if partner.website %}
+                <a href="{{ partner.website }}" target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center justify-center w-full h-full"
+                    aria-label="Visit {{ partner.name }}">
+                    {% else %}
+                    <div class="flex flex-col items-center justify-center w-full h-full">
+                        {% endif %}
+
+                        {% if partner.logo %}
+                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }} logo" loading="lazy" class="h-16 w-full max-w-[180px] object-contain
+                                grayscale group-hover:grayscale-0
+                                opacity-80 group-hover:opacity-100
+                                transition-all duration-300">
+                        {% else %}
+                        <div class="h-16 w-full flex items-center justify-center
+                                text-center font-bold text-lg text-gray-700
+                                dark:text-gray-200">
+                            {{ partner.name }}
+                        </div>
+                        {% endif %}
+
+                        {% if partner.name %}
+                        <p class="mt-4 text-xs text-center text-gray-500 dark:text-gray-400">
+                            {{ partner.name }}
+                        </p>
+                        {% endif %}
+
+                        {% if partner.website %}
+                </a>
+                {% else %}
+            </div>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+    <div class="text-center py-10">
+        <p class="text-gray-500 dark:text-gray-400">
+            Our partners will be featured here soon.
+        </p>
+    </div>
+    {% endif %}
+
     </div>
 </section>
 
