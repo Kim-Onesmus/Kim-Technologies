@@ -157,8 +157,7 @@ def submit_testimonial(request):
         context={"testimonial": testimonial},
         recipients=[settings.DEFAULT_FROM_EMAIL],
         cc=[
-            # "ruth@kimtechnologiesgroup.org",
-            "onesmus@kimtechnologiesgroup.org",
+            "ruth@kimtechnologiesgroup.org",
         ],
     )
 
@@ -256,8 +255,7 @@ def send_contact_email(request):
         context=email_context,
         recipients=[settings.DEFAULT_FROM_EMAIL],
         cc=[
-            # "ruth@kimtechnologiesgroup.org",
-            "onesmus@kimtechnologiesgroup.org",
+            "ruth@kimtechnologiesgroup.org",
         ],
     )
 
