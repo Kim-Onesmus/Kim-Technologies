@@ -243,3 +243,15 @@ section {
 .delay-500 {
   transition-delay: 0.5s;
 }
+
+
+
+
+.hero-background {
+    background-image:
+        linear-gradient(rgba(0, 25, 50, 0.72), rgba(0, 25, 50, 0.72)),
+        url("/static/images/brand.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
