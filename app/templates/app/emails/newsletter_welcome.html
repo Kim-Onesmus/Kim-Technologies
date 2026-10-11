@@ -1,0 +1,48 @@
+{% extends "emails/base_email.html" %}
+
+{% block email_title %}Welcome to Kim Technologies Updates{% endblock %}
+
+{% block email_content %}
+<h2 style="margin:0 0 16px; color:#036CB9; font-size:24px;">
+    Welcome Aboard!
+</h2>
+
+<p>
+    Thank you for subscribing to updates from Kim Technologies.
+    We're glad to have you in our community.
+</p>
+
+<p>
+    We'll share relevant updates about our digital services, website solutions,
+    technology projects, and company news.
+</p>
+
+<div style="margin:24px 0; padding:20px; background:#eff6ff; border-radius:8px;">
+    <h3 style="margin:0 0 10px; color:#036CB9; font-size:17px;">
+        What to Expect
+    </h3>
+    <ul style="margin:0; padding-left:20px;">
+        <li style="margin-bottom:8px;">Updates about our digital solutions</li>
+        <li style="margin-bottom:8px;">Company news and project highlights</li>
+        <li>Useful information about our services</li>
+    </ul>
+</div>
+
+<p>
+    You can contact our team at
+    <a href="mailto:contact@kimtechnologiesgroup.org" style="color:#036CB9;">
+        contact@kimtechnologiesgroup.org
+    </a>
+    if you have any questions.
+</p>
+
+<p style="margin-top:25px;">
+    Best regards,<br>
+    <strong style="color:#036CB9;">Kim Technologies Team</strong>
+</p>
+
+<p style="font-size:12px; color:#64748b; margin-top:24px;">
+    You received this email because an email address was submitted to our
+    newsletter subscription form.
+</p>
+{% endblock %}

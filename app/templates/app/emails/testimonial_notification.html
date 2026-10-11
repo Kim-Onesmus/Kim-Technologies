@@ -1,0 +1,30 @@
+{% extends "emails/base_email.html" %}
+
+{% block email_title %}New Testimonial for Review{% endblock %}
+
+{% block email_content %}
+<h2 style="margin:0 0 12px; color:#036CB9; font-size:23px;">
+    New Testimonial Submitted
+</h2>
+
+<p>A new testimonial has been submitted through your website and is awaiting review.</p>
+
+<div style="background:#fff7ed; border-left:4px solid #A5075E; padding:16px; margin:20px 0;">
+    <p style="margin:0 0 8px;"><strong>Name:</strong> {{ testimonial.name }}</p>
+    <p style="margin:0 0 8px;"><strong>Role:</strong> {{ testimonial.role }}</p>
+    <p style="margin:0 0 8px;"><strong>Organization:</strong> {{ testimonial.organization }}</p>
+    <p style="margin:0 0 8px;"><strong>Rating:</strong> {{ testimonial.rating }}/5</p>
+    <p style="margin:0;"><strong>Submitted:</strong> {{ testimonial.date_created|date:"d M Y, H:i" }}</p>
+</div>
+
+<h3 style="color:#111827; font-size:16px;">Testimonial</h3>
+
+<div
+    style="background:#f9fafb; border:1px solid #e5e7eb; padding:18px; border-radius:8px; white-space:pre-wrap; overflow-wrap:anywhere;">
+    {{ testimonial.testimony }}</div>
+
+<p style="margin-top:24px;">
+    <strong>Action required:</strong> Review this testimonial in the Django admin
+    and publish it when approved.
+</p>
+{% endblock %}
