@@ -1,0 +1,57 @@
+{% extends "emails/base_email.html" %}
+
+{% block email_title %}Thank You for Contacting Us{% endblock %}
+
+{% block email_content %}
+<h2 style="margin:0 0 16px; font-size:24px; color:#036CB9;">
+    Thank You, {{ contact.name }}!
+</h2>
+
+<p>
+    Thank you for reaching out to Kim Technologies. We have successfully
+    received your inquiry and appreciate your interest in our services.
+</p>
+
+<p>
+    Our team will review your message and get back to you as soon as possible.
+</p>
+
+<div style="margin:24px 0; padding:20px; border:1px solid #e5e7eb; border-radius:8px;">
+    <h3 style="margin:0 0 14px; color:#111827; font-size:16px;">
+        Your Inquiry Summary
+    </h3>
+
+    <p style="margin:0 0 8px;">
+        <strong>Reference:</strong> #{{ contact.id }}
+    </p>
+    <p style="margin:0 0 8px;">
+        <strong>Service:</strong> {{ service_name }}
+    </p>
+    <p style="margin:0 0 8px;">
+        <strong>Preferred Date:</strong> {{ preferred_date_display }}
+    </p>
+    <p style="margin:0 0 8px;">
+        <strong>Preferred Time:</strong> {{ preferred_time_display }}
+    </p>
+
+    <p style="margin:18px 0 6px;"><strong>Your Message</strong></p>
+    <div style="padding:12px; background:#f9fafb; border-radius:6px; white-space:pre-wrap; overflow-wrap:anywhere;">{{
+        contact.message }}</div>
+</div>
+
+<p>
+    If you have additional information to share, simply reply to this email.
+</p>
+
+<p style="margin-top:25px;">
+    Kind regards,<br>
+    <strong style="color:#036CB9;">Kim Technologies Team</strong>
+</p>
+
+<p style="margin-top:22px;">
+    <a href="https://www.kimtechnologiesgroup.org/"
+        style="display:inline-block; background:#036CB9; color:#ffffff; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:bold;">
+        Visit Our Website
+    </a>
+</p>
+{% endblock %}

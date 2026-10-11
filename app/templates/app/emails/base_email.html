@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block email_title %}Kim Technologies{% endblock %}</title>
+</head>
+
+<body style="margin:0; padding:0; background-color:#f3f6fa; font-family:Arial, Helvetica, sans-serif; color:#263445;">
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+        style="background-color:#f3f6fa; padding:30px 12px;">
+        <tr>
+            <td align="center">
+
+                <table role="presentation" width="600" cellspacing="0" cellpadding="0"
+                    style="width:100%; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden;">
+
+                    <tr>
+                        <td style="height:6px; background-color:#036CB9; font-size:0;">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:28px 32px 22px; text-align:center;">
+                            <h1 style="margin:0; font-size:25px; font-weight:700; color:#036CB9;">
+                                Kim <span style="color:#A5075E;">Technologies</span>
+                            </h1>
+                            <p
+                                style="margin:8px 0 0; font-size:12px; letter-spacing:1px; color:#64748b; text-transform:uppercase;">
+                                Digital Solutions. Real Impact.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:0 32px;">
+                            <div style="height:1px; background-color:#e8edf3;"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:30px 32px 36px; font-size:15px; line-height:1.8; color:#374151;">
+                            {% block email_content %}{% endblock %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:#111827; padding:25px 32px; text-align:center;">
+                            <p style="margin:0 0 8px; color:#ffffff; font-size:14px; font-weight:700;">
+                                Kim Technologies
+                            </p>
+
+                            <p style="margin:0 0 12px; color:#cbd5e1; font-size:12px;">
+                                Websites, deployment and digital solutions for growing businesses.
+                            </p>
+
+                            <p style="margin:0 0 8px; font-size:12px;">
+                                <a href="https://www.kimtechnologiesgroup.org/"
+                                    style="color:#93c5fd; text-decoration:none;">
+                                    www.kimtechnologiesgroup.org
+                                </a>
+                            </p>
+
+                            <p style="margin:0; font-size:12px; color:#9ca3af;">
+                                &copy; {% now "Y" %} Kim Technologies. All rights reserved.
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

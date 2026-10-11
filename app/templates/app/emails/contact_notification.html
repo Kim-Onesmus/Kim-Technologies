@@ -1,0 +1,57 @@
+{% extends "emails/base_email.html" %}
+
+{% block email_title %}New Contact Inquiry | Kim Technologies{% endblock %}
+
+{% block email_content %}
+<h2 style="margin:0 0 12px; color:#036CB9; font-size:23px;">
+    New Contact Inquiry
+</h2>
+
+<p style="margin:0 0 22px;">
+    A visitor has submitted a new inquiry through the Kim Technologies website.
+</p>
+
+<div style="background:#eff6ff; border-left:4px solid #036CB9; padding:16px; margin-bottom:24px;">
+    <p style="margin:0 0 6px;"><strong>Reference:</strong> #{{ contact.id }}</p>
+    <p style="margin:0 0 6px;"><strong>Submitted:</strong> {{ contact.date_created|date:"d M Y, H:i" }}</p>
+    <p style="margin:0;"><strong>Status:</strong> New inquiry</p>
+</div>
+
+<h3 style="font-size:16px; color:#111827;">Customer Details</h3>
+
+<table role="presentation" width="100%" cellspacing="0" cellpadding="8"
+    style="border-collapse:collapse; font-size:14px;">
+    <tr>
+        <td style="border-bottom:1px solid #e5e7eb; width:38%; color:#64748b;">Name</td>
+        <td style="border-bottom:1px solid #e5e7eb;"><strong>{{ contact.name }}</strong></td>
+    </tr>
+    <tr>
+        <td style="border-bottom:1px solid #e5e7eb; color:#64748b;">Email</td>
+        <td style="border-bottom:1px solid #e5e7eb;">
+            <a href="mailto:{{ contact.email }}" style="color:#036CB9;">{{ contact.email }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom:1px solid #e5e7eb; color:#64748b;">Service</td>
+        <td style="border-bottom:1px solid #e5e7eb;">{{ service_name }}</td>
+    </tr>
+    <tr>
+        <td style="border-bottom:1px solid #e5e7eb; color:#64748b;">Preferred Date</td>
+        <td style="border-bottom:1px solid #e5e7eb;">{{ preferred_date_display }}</td>
+    </tr>
+    <tr>
+        <td style="border-bottom:1px solid #e5e7eb; color:#64748b;">Preferred Time</td>
+        <td style="border-bottom:1px solid #e5e7eb;">{{ preferred_time_display }}</td>
+    </tr>
+</table>
+
+<h3 style="font-size:16px; color:#111827; margin-top:26px;">Customer Message</h3>
+
+<div
+    style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; padding:18px; white-space:pre-wrap; overflow-wrap:anywhere;">
+    {{ contact.message }}</div>
+
+<p style="margin:24px 0 0;">
+    Please follow up with the customer as soon as possible.
+</p>
+{% endblock %}

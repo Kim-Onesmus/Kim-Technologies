@@ -485,3 +485,28 @@ document.addEventListener("DOMContentLoaded", function () {
   document.documentElement.classList.remove("dark");
 
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll(
+    'form[action*="send-contact-email"], ' +
+      'form[action*="submit-testimonial"], ' +
+      'form[action*="subscribe"]',
+  );
+
+  forms.forEach(function (form) {
+    form.addEventListener("submit", function () {
+      if (!form.checkValidity()) return;
+
+      const submitButton = form.querySelector(
+        'button[type="submit"], input[type="submit"]',
+      );
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.classList.add("opacity-60", "cursor-not-allowed");
+      }
+    });
+  });
+});
