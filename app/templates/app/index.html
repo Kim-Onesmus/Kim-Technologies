@@ -782,7 +782,7 @@
 
             <!-- Modal Form -->
             <form id="testimonialForm" class="space-y-5 p-6 sm:p-8" method="POST"
-                action="{% url 'submit_testimonial' %}" enctype="multipart/form-data">
+                action="{% url 'app:submit_testimonial' %}" enctype="multipart/form-data">
 
                 {% csrf_token %}
 
@@ -1056,7 +1056,7 @@
                         date and time for a discussion.
                     </p>
 
-                    <form id="contactForm" class="space-y-5" method="post" action="{% url 'send_contact_email' %}">
+                    <form id="contactForm" class="space-y-5" method="post" action="{% url 'app:send_contact_email' %}">
 
                         {% csrf_token %}
 
@@ -1235,7 +1235,7 @@
                     <h4 class="text-xl font-bold mb-4">Subscribe to Our Newsletter</h4>
                     <p class="text-gray-400 mb-4">Get the latest updates, insights, and offers straight to your inbox.
                     </p>
-                    <form class="flex gap-2" method="post" action="{% url 'subscribe' %}">
+                    <form class="flex gap-2" method="post" action="{% url 'app:subscribe' %}">
                         {% csrf_token %}
                         <input type="email" name="email" placeholder="Enter your email"
                             class="px-4 py-2 rounded-lg bg-gray-800 text-white flex-grow">
@@ -1255,29 +1255,829 @@
         </div>
     </footer>
 
+
+
 <!-- =========================
      FLOATING WHATSAPP BUTTON
 ========================= -->
 <a href="https://wa.me/254792613079?text=Hello%20Kim%20Technologies%2C%20I%27d%20like%20to%20inquire%20about%20your%20services."
     target="_blank" rel="noopener noreferrer" aria-label="Chat with Kim Technologies on WhatsApp"
     title="Chat with us on WhatsApp"
-    class="group fixed bottom-6 right-5 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition duration-300 hover:scale-110 hover:bg-[#1DA851] focus:outline-none focus:ring-4 focus:ring-green-300 sm:bottom-7 sm:right-7">
+    class="group fixed bottom-5 right-5 z-[9998] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-[#1DA851] focus:outline-none focus:ring-4 focus:ring-green-300 sm:bottom-6 sm:right-6">
 
-    <!-- WhatsApp SVG Icon -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-8 w-8 fill-current" aria-hidden="true">
         <path
             d="M16.02 3C8.85 3 3.02 8.82 3.02 16c0 2.29.6 4.53 1.74 6.51L3 29l6.67-1.74A12.95 12.95 0 0 0 16.02 29C23.2 29 29.02 23.18 29.02 16S23.2 3 16.02 3zm0 23.63c-2.04 0-4.04-.55-5.79-1.6l-.42-.25-3.96 1.04 1.06-3.86-.27-.44A10.57 10.57 0 0 1 5.4 16c0-5.86 4.76-10.62 10.62-10.62S26.64 10.14 26.64 16 21.88 26.63 16.02 26.63zm5.82-7.94c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.6-.95-.85-1.6-1.9-1.79-2.22-.18-.32-.02-.49.14-.65.15-.14.32-.37.48-.55.16-.19.21-.32.32-.53.1-.21.05-.4-.03-.56-.08-.16-.71-1.72-.97-2.36-.26-.62-.52-.54-.71-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.06 1.3 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.61-.37z" />
     </svg>
 
-    <!-- Hover Tooltip -->
     <span
-        class="pointer-events-none absolute right-16 whitespace-nowrap rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white opacity-0 shadow-lg transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-        Chat with us
+        class="pointer-events-none absolute right-16 whitespace-nowrap rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
+        Chat on WhatsApp
     </span>
-
 </a>
 
-    <script src="{% static 'js/script.js' %}"></script>
+
+<div id="kim-support-widget" data-start-url="{% url 'app:chat_start' %}" data-resume-url="{% url 'app:chat_resume' %}"
+    data-message-url="{% url 'app:chat_message' %}" data-ticket-url="{% url 'app:create_ticket' %}">
+
+    <style>
+        #kim-support-widget {
+            --kim-blue: #036CB9;
+            --kim-blue-dark: #025795;
+            --kim-pink: #A5075E;
+            --kim-pink-dark: #85064C;
+            --kim-ink: #1f2933;
+            --kim-muted: #667781;
+            --kim-green: #25d366;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.35;
+        }
+
+        #kim-support-widget,
+        #kim-support-widget * {
+            box-sizing: border-box;
+        }
+
+        #kim-support-widget [hidden] {
+            display: none !important;
+        }
+
+        :where(#kim-support-widget) button {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        :where(#kim-support-widget) h2,
+        :where(#kim-support-widget) p {
+            margin: 0;
+        }
+
+        /* ---------- launcher ---------- */
+        .kim-launcher {
+            position: fixed;
+            right: 96px;
+            bottom: 24px;
+            z-index: 2147483000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 16px 9px 9px;
+            border-radius: 999px;
+            background: var(--kim-blue);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 26px rgba(3, 108, 185, .38);
+            transition: background .15s;
+        }
+
+        .kim-launcher:hover {
+            background: var(--kim-blue-dark);
+        }
+
+        .kim-launcher:focus-visible {
+            outline: 3px solid #bfe0f7;
+            outline-offset: 2px;
+        }
+
+        .kim-launcher-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        /* ---------- online dot (always visible) ---------- */
+        .kim-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--kim-green);
+            flex: 0 0 auto;
+        }
+
+        .kim-dot-badge {
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            width: 13px;
+            height: 13px;
+            border: 2px solid var(--kim-blue);
+        }
+
+        /* ---------- panel: header on top, composer at bottom, messages scroll ---------- */
+        .kim-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2147483001;
+            flex-direction: column;
+            background: #ece5dd;
+            color: var(--kim-ink);
+        }
+
+        .kim-panel.kim-open {
+            display: flex;
+        }
+
+        @media (min-width: 640px) {
+            .kim-panel {
+                inset: auto 24px 92px auto;
+                width: 400px;
+                height: min(640px, calc(100vh - 120px));
+                height: min(640px, calc(100dvh - 120px));
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 22px 54px rgba(0, 0, 0, .3);
+            }
+        }
+
+        .kim-header {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: calc(10px + env(safe-area-inset-top)) 6px 10px 12px;
+            background: var(--kim-blue);
+            color: #fff;
+        }
+
+        .kim-avatar {
+            position: relative;
+            flex: 0 0 auto;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .kim-head-text {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .kim-head-text h2 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .kim-sub {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 3px;
+            font-size: 12px;
+            color: #d6ecfb;
+        }
+
+        .kim-idchip {
+            padding: 2px 9px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .kim-idchip:hover {
+            background: rgba(255, 255, 255, .3);
+        }
+
+        .kim-iconbtn {
+            flex: 0 0 auto;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #fff;
+        }
+
+        .kim-iconbtn:hover {
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .kim-iconbtn:focus-visible,
+        .kim-tool:focus-visible,
+        .kim-send:focus-visible {
+            outline: 3px solid #bfe0f7;
+            outline-offset: 1px;
+        }
+
+        .kim-menu {
+            position: absolute;
+            top: calc(58px + env(safe-area-inset-top));
+            right: 10px;
+            z-index: 5;
+            min-width: 210px;
+            padding: 6px 0;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+        }
+
+        .kim-menu button {
+            display: block;
+            width: 100%;
+            padding: 11px 16px;
+            text-align: left;
+            font-size: 14px;
+            color: var(--kim-ink);
+        }
+
+        .kim-menu button:hover {
+            background: #f3f5f7;
+        }
+
+        .kim-menu .kim-menu-contact {
+            color: var(--kim-pink);
+            font-weight: 600;
+        }
+
+        .kim-messages {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px 12px 8px;
+            background-color: #ece5dd;
+            background-image: radial-gradient(rgba(3, 108, 185, .09) 1.2px, transparent 1.2px);
+            background-size: 20px 20px;
+        }
+
+        .kim-messages>* {
+            flex-shrink: 0;
+        }
+
+        .kim-row {
+            display: flex;
+        }
+
+        .kim-row.kim-user {
+            justify-content: flex-end;
+        }
+
+        .kim-bubble {
+            max-width: 85%;
+            padding: 6px 9px 4px;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 15px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .14);
+        }
+
+        .kim-row:not(.kim-user) .kim-bubble {
+            border-top-left-radius: 0;
+        }
+
+        .kim-row.kim-user .kim-bubble {
+            background: #d6ebfb;
+            border-top-right-radius: 0;
+        }
+
+        .kim-text {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .kim-file {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, .05);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .kim-meta {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+            font-size: 10.5px;
+            color: var(--kim-muted);
+        }
+
+        .kim-tick {
+            color: var(--kim-blue);
+            font-weight: 700;
+        }
+
+        .kim-typing {
+            display: inline-flex;
+            gap: 4px;
+            padding: 5px 2px;
+        }
+
+        .kim-typing i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #9aa5ad;
+            animation: kim-bounce 1.2s infinite ease-in-out;
+        }
+
+        .kim-typing i:nth-child(2) {
+            animation-delay: .15s;
+        }
+
+        .kim-typing i:nth-child(3) {
+            animation-delay: .3s;
+        }
+
+        @keyframes kim-bounce {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: .5;
+            }
+
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .kim-typing i {
+                animation: none;
+            }
+        }
+
+        .kim-notice-wrap {
+            display: flex;
+            justify-content: center;
+        }
+
+        .kim-notice {
+            padding: 4px 12px;
+            border-radius: 8px;
+            background: #fff5c4;
+            color: #54656f;
+            font-size: 12px;
+            text-align: center;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        .kim-chips,
+        .kim-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding-left: 2px;
+        }
+
+        .kim-chip {
+            padding: 7px 13px;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--kim-blue);
+            border: 1px solid rgba(3, 108, 185, .3);
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+        }
+
+        .kim-chip:hover {
+            background: #eef7fd;
+        }
+
+        .kim-btn-primary,
+        .kim-btn-ghost {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+        }
+
+        .kim-btn-primary {
+            background: var(--kim-pink);
+            color: #fff;
+        }
+
+        .kim-btn-primary:hover {
+            background: var(--kim-pink-dark);
+        }
+
+        .kim-btn-ghost {
+            background: #fff;
+            color: #3b4a54;
+            border: 1px solid #cfd6db;
+        }
+
+        .kim-btn-ghost:hover {
+            background: #f3f5f7;
+        }
+
+        /* ---------- sheets above the composer ---------- */
+        .kim-sheet {
+            flex: 0 0 auto;
+            padding: 12px;
+            background: #fff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .kim-sheet-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .kim-sheet-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--kim-ink);
+        }
+
+        .kim-x {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #8696a0;
+        }
+
+        .kim-x:hover {
+            background: #f0f2f5;
+        }
+
+        .kim-form-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .kim-field {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding: 10px 12px;
+            font: inherit;
+            font-size: 16px;
+            color: var(--kim-ink);
+            background: #f5f7f8;
+            border: 1px solid #dbe1e5;
+            border-radius: 12px;
+            outline: 0;
+        }
+
+        .kim-field:focus {
+            border-color: var(--kim-blue);
+            box-shadow: 0 0 0 3px rgba(3, 108, 185, .15);
+            background: #fff;
+        }
+
+        .kim-submit {
+            flex: 0 0 auto;
+            padding: 0 18px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .kim-submit:disabled {
+            opacity: .5;
+            cursor: default;
+        }
+
+        .kim-submit-blue {
+            background: var(--kim-blue);
+        }
+
+        .kim-submit-blue:hover {
+            background: var(--kim-blue-dark);
+        }
+
+        .kim-submit-pink {
+            background: var(--kim-pink);
+        }
+
+        .kim-submit-pink:hover {
+            background: var(--kim-pink-dark);
+        }
+
+        .kim-hint {
+            margin-top: 6px;
+            font-size: 11.5px;
+            color: var(--kim-muted);
+        }
+
+        .kim-error {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #c62828;
+        }
+
+        .kim-emoji-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .kim-emoji-grid button {
+            padding: 6px;
+            border-radius: 8px;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .kim-emoji-grid button:hover {
+            background: #f0f2f5;
+        }
+
+        /* ---------- composer (always pinned to the bottom) ---------- */
+        .kim-composer {
+            flex: 0 0 auto;
+            padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+            background: #f0f2f5;
+        }
+
+        .kim-file-preview {
+            margin-bottom: 6px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            background: #fff;
+            color: var(--kim-blue);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+        }
+
+        .kim-compose-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .kim-pill {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 4px 6px;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+        }
+
+        .kim-tool {
+            flex: 0 0 auto;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #8696a0;
+            font-size: 20px;
+        }
+
+        .kim-tool:hover {
+            background: #f0f2f5;
+        }
+
+        .kim-tool:disabled {
+            opacity: .45;
+            cursor: default;
+        }
+
+        .kim-input {
+            flex: 1 1 auto;
+            min-width: 0;
+            max-height: 112px;
+            padding: 8px 6px;
+            border: 0;
+            outline: 0;
+            resize: none;
+            background: transparent;
+            font: inherit;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--kim-ink);
+        }
+
+        .kim-input::placeholder {
+            color: #8696a0;
+        }
+
+        .kim-send {
+            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--kim-blue);
+            color: #fff;
+            box-shadow: 0 2px 6px rgba(3, 108, 185, .35);
+        }
+
+        .kim-send:hover {
+            background: var(--kim-blue-dark);
+        }
+
+        .kim-send:disabled {
+            opacity: .5;
+            cursor: default;
+        }
+
+        .kim-foot {
+            margin-top: 6px;
+            text-align: center;
+            font-size: 10.5px;
+            color: #8696a0;
+        }
+    </style>
+
+    <!-- Floating launcher -->
+    <button id="kim-chat-launcher" type="button" class="kim-launcher" aria-label="Open AI Support" aria-expanded="false"
+        aria-controls="kim-chat-panel">
+        <span class="kim-launcher-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"
+                aria-hidden="true">
+                <path d="M4 13v-2a8 8 0 0 1 16 0v2" />
+                <rect x="3" y="12" width="4" height="7" rx="2" />
+                <rect x="17" y="12" width="4" height="7" rx="2" />
+                <path d="M8 20h8" />
+            </svg>
+        </span>
+        <span>AI Support</span>
+        <span class="kim-dot" aria-hidden="true"></span>
+    </button>
+
+    <!-- Chat panel -->
+    <div id="kim-chat-panel" class="kim-panel" role="dialog" aria-label="Kim Technologies support chat"
+        aria-hidden="true">
+
+        <header class="kim-header">
+            <div class="kim-avatar">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    aria-hidden="true">
+                    <path d="M4 13v-2a8 8 0 0 1 16 0v2" />
+                    <rect x="3" y="12" width="4" height="7" rx="2" />
+                    <rect x="17" y="12" width="4" height="7" rx="2" />
+                </svg>
+                <span class="kim-dot kim-dot-badge" aria-hidden="true"></span>
+            </div>
+
+            <div class="kim-head-text">
+                <h2>Kim Technologies Support</h2>
+                <p class="kim-sub">
+                    <span class="kim-dot" aria-hidden="true"></span>
+                    <span>Online</span>
+                    <button id="kim-chat-id" type="button" class="kim-idchip" data-action="copy-id"
+                        title="Tap to copy your chat ID">ID: <span id="kim-chat-code">…</span></button>
+                </p>
+            </div>
+
+            <button id="kim-menu-btn" type="button" class="kim-iconbtn" data-action="toggle-menu" aria-label="Chat menu"
+                aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="5" r="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <circle cx="12" cy="19" r="2" />
+                </svg>
+            </button>
+            <button id="kim-chat-close" type="button" class="kim-iconbtn" data-action="close" aria-label="Close chat">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6 6 18" />
+                </svg>
+            </button>
+        </header>
+
+        <div id="kim-menu" class="kim-menu" role="menu" hidden>
+            <button type="button" role="menuitem" data-action="menu-resume">Resume a chat</button>
+            <button type="button" role="menuitem" data-action="menu-new">Start a new chat</button>
+            <button type="button" role="menuitem" class="kim-menu-contact" data-action="menu-contact">Contact support
+                team</button>
+        </div>
+
+        <!-- Only this area scrolls -->
+        <div id="kim-chat-messages" class="kim-messages" aria-live="polite"></div>
+
+        <!-- Resume by chat ID -->
+        <div id="kim-resume-wrap" class="kim-sheet" hidden>
+            <div class="kim-sheet-head">
+                <span class="kim-sheet-title">Resume a chat</span>
+                <button type="button" class="kim-x" data-action="resume-cancel" aria-label="Cancel">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6 6 18" />
+                    </svg>
+                </button>
+            </div>
+            <form id="kim-resume-form" class="kim-form-row">
+                <input id="kim-resume-input" class="kim-field" type="text" maxlength="20" autocomplete="off"
+                    autocapitalize="characters" placeholder="KT-XXXXXXXX" aria-label="Chat ID">
+                <button type="submit" class="kim-submit kim-submit-blue">Open</button>
+            </form>
+            <p id="kim-resume-error" class="kim-error" hidden></p>
+        </div>
+
+        <!-- Email form: shown only after the visitor agrees to contact support -->
+        <div id="kim-ticket-form-wrap" class="kim-sheet" hidden>
+            <form id="kim-ticket-form">
+                {% csrf_token %}
+                <div class="kim-sheet-head">
+                    <label for="kim-ticket-email" class="kim-sheet-title">Your email address</label>
+                    <button type="button" class="kim-x" data-action="ticket-cancel" aria-label="Cancel">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M6 6l12 12M18 6 6 18" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="kim-form-row">
+                    <input id="kim-ticket-email" class="kim-field" name="email" type="email" maxlength="254"
+                        autocomplete="email" required placeholder="you@example.com">
+                    <button id="kim-ticket-submit" type="submit" class="kim-submit kim-submit-pink">Send</button>
+                </div>
+                <p class="kim-hint">This chat will be shared with our team.</p>
+            </form>
+        </div>
+
+        <!-- Emoji picker -->
+        <div id="kim-emoji-picker" class="kim-sheet" hidden>
+            <div class="kim-emoji-grid">
+                <button type="button" data-emoji="😀">😀</button>
+                <button type="button" data-emoji="😂">😂</button>
+                <button type="button" data-emoji="😊">😊</button>
+                <button type="button" data-emoji="🙏">🙏</button>
+                <button type="button" data-emoji="👍">👍</button>
+                <button type="button" data-emoji="❤️">❤️</button>
+                <button type="button" data-emoji="🎉">🎉</button>
+                <button type="button" data-emoji="💻">💻</button>
+            </div>
+        </div>
+
+        <!-- Composer: always pinned to the bottom -->
+        <footer class="kim-composer">
+            <div id="kim-chat-file-preview" class="kim-file-preview" hidden></div>
+
+            <form id="kim-chat-form" class="kim-compose-row">
+                {% csrf_token %}
+                <input id="kim-chat-file" type="file" hidden accept="image/*,.pdf,.doc,.docx,.txt,.csv,.xlsx">
+
+                <div class="kim-pill">
+                    <button id="kim-chat-emoji" type="button" class="kim-tool" aria-label="Choose emoji">☺</button>
+                    <textarea id="kim-chat-input" class="kim-input" name="message" rows="1" maxlength="4000"
+                        placeholder="Type a message" aria-label="Type your message"></textarea>
+                    <button id="kim-chat-attach" type="button" class="kim-tool" aria-label="Attach a file">📎</button>
+                </div>
+
+                <button id="kim-chat-send" type="submit" class="kim-send" aria-label="Send message">
+                    <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m22 2-7 20-4-9-9-4Z" />
+                        <path d="M22 2 11 13" />
+                    </svg>
+                </button>
+            </form>
+
+            <p class="kim-foot">Never share passwords or API keys.</p>
+        </footer>
+    </div>
+</div>
+
+
+
+<!-- Support Widget JavaScript -->
+<script src="{% static 'js/support/support.js' %}?v=2" defer></script>
+<script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

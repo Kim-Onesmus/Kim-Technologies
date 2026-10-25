@@ -10,6 +10,27 @@ from django.shortcuts import render, redirect
 from django.utils.dateparse import parse_date, parse_time
 from django.views.decorators.http import require_POST
 from django.template.loader import render_to_string
+import json
+import logging
+import re
+
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.utils.html import strip_tags
+from django.views.decorators.csrf import (
+    csrf_protect,
+    ensure_csrf_cookie,
+)
+from django.views.decorators.http import require_GET, require_POST
+
+from .models import ChatSession, ChatMessage, SupportTicket
+from .services import ask_ai, send_ticket_emails
+
+logger = logging.getLogger(__name__)
+
+MAX_MESSAGE_LENGTH = 4000
 
 from .models import Testimonial, Subscribe, ContactMessage, Partner
 
@@ -342,3 +363,376 @@ def SubScribe(request):
         )
 
     return redirect("/#newsletter")
+
+
+import json
+import logging
+import re
+import uuid
+from pathlib import Path
+
+from django.core.cache import cache
+from django.core.exceptions import ValidationError
+from django.core.files.storage import default_storage
+from django.core.validators import validate_email
+from django.http import JsonResponse
+from django.utils.html import strip_tags
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
+from django.views.decorators.http import require_GET, require_POST
+
+from .models import ChatSession, ChatMessage, SupportTicket
+from .services import (
+    CODE_REDIRECT,
+    CONSENT_QUESTION,
+    ask_ai,
+    send_ticket_emails,
+    summarize_support_conversation,
+)
+
+logger = logging.getLogger(__name__)
+
+MAX_MESSAGE_LENGTH = 4000
+MAX_UPLOAD_SIZE = 5 * 1024 * 1024
+
+ALLOWED_EXTENSIONS = {
+    ".png", ".jpg", ".jpeg", ".gif", ".webp",
+    ".pdf", ".doc", ".docx", ".txt", ".csv", ".xlsx",
+}
+
+
+# ---------- helpers ----------
+
+def _json_body(request):
+    try:
+        data = json.loads(request.body.decode("utf-8") or "{}")
+        return data if isinstance(data, dict) else {}
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return {}
+
+
+def _request_data(request):
+    """Accept either JSON or multipart/form-data."""
+    if request.content_type and request.content_type.startswith(
+        "multipart/form-data"
+    ):
+        return request.POST
+    return _json_body(request)
+
+
+def _clean(value, limit=MAX_MESSAGE_LENGTH):
+    return strip_tags(str(value or "")).strip()[:limit]
+
+
+_CODE_PATTERN = re.compile(
+    r"```|<!doctype|<html|<script|<\?php|^\s*(def |class |import |function |const |SELECT )",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+def _contains_code(text):
+    """True if an AI reply looks like it contains source code."""
+    return bool(_CODE_PATTERN.search(text or ""))
+
+
+def _client_ip(request):
+    forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR", "")
+
+
+def _throttled(request, scope, limit, window=300):
+    """Simple per-IP rate limit (uses Django's cache)."""
+    key = f"kim-chat:{scope}:{_client_ip(request)}"
+    cache.add(key, 0, window)
+    try:
+        count = cache.incr(key)
+    except ValueError:
+        cache.set(key, 1, window)
+        count = 1
+    return count > limit
+
+
+def _get_session(raw_id):
+    """Return a ChatSession for a public_id, or None (never raises)."""
+    raw_id = str(raw_id or "").strip()
+    if not raw_id:
+        return None
+    try:
+        return ChatSession.objects.get(public_id=raw_id)
+    except (ChatSession.DoesNotExist, ValueError, ValidationError):
+        return None
+
+
+def _normalize_code(raw):
+    code = re.sub(r"[^A-Za-z0-9]", "", str(raw or "")).upper()
+    if code.startswith("KT"):
+        code = code[2:]
+    return f"KT-{code}" if code else ""
+
+
+def _session_payload(session, **extra):
+    if not session.chat_code:
+        session.save()  # ChatSession.save() generates the chat code
+    return {
+        "session_id": str(session.public_id),
+        "chat_code": session.chat_code,
+        **extra,
+    }
+
+
+# ---------- views ----------
+
+@require_GET
+@ensure_csrf_cookie
+def health(request):
+    return JsonResponse({"ok": True, "service": "kim-support"})
+
+
+@require_POST
+@csrf_protect
+def chat_start(request):
+    data = _request_data(request)
+
+    session = _get_session(data.get("session_id"))
+    if session and not session.is_closed:
+        return JsonResponse(_session_payload(session, created=False))
+
+    if _throttled(request, "start", 20):
+        return JsonResponse(
+            {"error": "Too many requests. Please wait a moment."},
+            status=429,
+        )
+
+    session = ChatSession.objects.create()
+    return JsonResponse(_session_payload(session, created=True))
+
+
+@require_POST
+@csrf_protect
+def chat_resume(request):
+    """Reopen a previous chat using its customer-facing chat ID."""
+    if _throttled(request, "resume", 10):
+        return JsonResponse(
+            {"error": "Too many attempts. Please try again in a few minutes."},
+            status=429,
+        )
+
+    data = _request_data(request)
+
+    # Accept the internal session_id (auto-restore) or a typed chat ID.
+    session = _get_session(data.get("session_id"))
+    if not session:
+        code = _normalize_code(data.get("chat_code"))
+        if not code:
+            return JsonResponse(
+                {"error": "Enter your chat ID, e.g. KT-7F3K9QXA."},
+                status=400,
+            )
+        session = ChatSession.objects.filter(chat_code=code).first()
+
+    if not session:
+        return JsonResponse(
+            {"error": "We couldn't find that chat ID. Check it and try again."},
+            status=404,
+        )
+
+    history = (
+        session.messages
+        .filter(role__in=[ChatMessage.Role.USER, ChatMessage.Role.ASSISTANT])
+        .order_by("-created_at")[:100]
+    )
+    messages = [
+        {
+            "role": m.role,
+            "content": m.content,
+            "created_at": m.created_at.isoformat(),
+        }
+        for m in reversed(list(history))
+    ]
+
+    return JsonResponse(
+        _session_payload(session, closed=session.is_closed, messages=messages)
+    )
+
+
+@require_POST
+@csrf_protect
+def chat_message(request):
+    if _throttled(request, "message", 40):
+        return JsonResponse(
+            {"error": "You're sending messages too fast. Please wait a moment."},
+            status=429,
+        )
+
+    data = _request_data(request)
+
+    message = _clean(data.get("message"))
+    uploaded_file = request.FILES.get("file")
+
+    if not message and not uploaded_file:
+        return JsonResponse(
+            {"error": "Type a message or attach a file."},
+            status=400,
+        )
+
+    session = _get_session(data.get("session_id"))
+    if not session:
+        return JsonResponse(
+            {"error": "Chat not found. Please start a new chat."},
+            status=404,
+        )
+
+    if session.is_closed:
+        return JsonResponse(
+            {"error": "This chat is closed. Start a new chat to continue."},
+            status=400,
+        )
+
+    attachment_note = ""
+
+    if uploaded_file:
+        suffix = Path(uploaded_file.name).suffix.lower()
+
+        if suffix not in ALLOWED_EXTENSIONS:
+            return JsonResponse(
+                {"error": "This file type is not supported."},
+                status=400,
+            )
+
+        if uploaded_file.size > MAX_UPLOAD_SIZE:
+            return JsonResponse(
+                {"error": "Attachments must be 5 MB or smaller."},
+                status=400,
+            )
+
+        # Configure default_storage as PRIVATE for customer attachments.
+        safe_name = f"{uuid.uuid4().hex}{suffix}"
+        storage_path = default_storage.save(
+            f"support-chat-uploads/{safe_name}",
+            uploaded_file,
+        )
+
+        attachment_note = (
+            f"[Attachment uploaded: {Path(uploaded_file.name).name}; "
+            f"stored as {storage_path}]"
+        )
+
+    saved_message = message
+    if attachment_note:
+        saved_message = (
+            f"{message}\n\n{attachment_note}".strip()
+            if message else attachment_note
+        )
+
+    ChatMessage.objects.create(
+        session=session,
+        role=ChatMessage.Role.USER,
+        content=saved_message,
+    )
+
+    try:
+        # The AI sees the text and attachment filename only, not file contents.
+        answer = ask_ai(session, saved_message)
+    except Exception:
+        logger.exception("AI chat request failed")
+        answer = (
+            "[ESCALATE]\n"
+            "I'm having trouble answering right now. "
+            f"{CONSENT_QUESTION}"
+        )
+
+    # The chat shows plain text, so remove markdown bold/underline marks.
+    answer = re.sub(r"\*\*|__", "", answer)
+
+    # Safety net: the assistant must never send code to customers.
+    if _contains_code(answer):
+        answer = f"[ESCALATE]\n{CODE_REDIRECT}"
+
+    escalate = answer.lstrip().startswith("[ESCALATE]")
+
+    if escalate:
+        answer = re.sub(r"^\s*\[ESCALATE\]\s*", "", answer).strip()
+        if not answer:
+            answer = CONSENT_QUESTION
+
+    ChatMessage.objects.create(
+        session=session,
+        role=ChatMessage.Role.ASSISTANT,
+        content=answer,
+    )
+
+    return JsonResponse(_session_payload(session, answer=answer, escalate=escalate))
+
+
+@require_POST
+@csrf_protect
+def create_ticket(request):
+    data = _request_data(request)
+
+    email = _clean(data.get("email"), 254)
+
+    if not email:
+        return JsonResponse(
+            {"error": "Enter your email address so our team can reply."},
+            status=400,
+        )
+
+    try:
+        validate_email(email)
+    except ValidationError:
+        return JsonResponse(
+            {"error": "Enter a valid email address."},
+            status=400,
+        )
+
+    session = _get_session(data.get("session_id"))
+    if not session:
+        return JsonResponse(
+            {"error": "Your chat could not be found. Please start a new chat."},
+            status=404,
+        )
+
+    # Build the ticket from the saved conversation, not client-supplied fields.
+    subject, description = summarize_support_conversation(session)
+
+    ticket = SupportTicket.objects.create(
+        session=session,
+        customer_name=session.visitor_name or "Website visitor",
+        customer_email=email,
+        subject=subject[:180],
+        description=description[:20000],
+        category="Website AI support",
+        priority=SupportTicket.Priority.NORMAL,
+    )
+
+    session.visitor_email = email
+    session.save(update_fields=["visitor_email", "updated_at"])
+
+    ChatMessage.objects.create(
+        session=session,
+        role=ChatMessage.Role.SYSTEM,
+        content=f"Support ticket {ticket.reference} created.",
+    )
+
+    send_ticket_emails(ticket)
+
+    return JsonResponse({
+        "success": True,
+        "ticket_reference": ticket.reference,
+        "chat_code": session.chat_code,
+        "message": (
+            f"Done. Ticket {ticket.reference} sent. "
+            "Our team will reply to your email."
+        ),
+    }, status=201)
+
+
+@require_GET
+def ticket_status(request, reference):
+    return JsonResponse({
+        "error": (
+            "Public ticket lookup is not enabled. "
+            "Reply to your ticket email for updates."
+        )
+    }, status=404)

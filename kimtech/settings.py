@@ -175,6 +175,7 @@ DEFAULT_FROM_EMAIL = os.getenv(
     EMAIL_HOST_USER
 )
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_TIMEOUT = 15
 
 
 
@@ -182,3 +183,16 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+SUPPORT_EMAIL = "contact@kimtechnologiesgroup.org"
+SITE_URL = "https://www.kimtechnologiesgroup.org"
+
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL",
+    "contact@kimtechnologiesgroup.org",
+)
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
+DATA_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024

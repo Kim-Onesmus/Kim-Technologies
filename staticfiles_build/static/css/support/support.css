@@ -1,0 +1,289 @@
+.kim-support-root {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    z-index: 9999;
+}
+
+.kim-chat-launcher {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    background: #036CB9;
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 19px;
+    box-shadow: 0 8px 30px #0003;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.kim-launcher-icon {
+    font-size: 21px;
+}
+
+.kim-chat-panel {
+    position: fixed;
+    right: 22px;
+    bottom: 86px;
+    width: min(390px, calc(100vw - 28px));
+    height: min(620px, calc(100vh - 120px));
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 16px 60px #0f172a40;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+}
+
+.kim-chat-panel[hidden],
+.kim-ticket-form-wrap[hidden] {
+    display: none;
+}
+
+.kim-chat-header {
+    background: #036CB9;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.kim-chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    color: #036CB9;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.kim-chat-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.kim-chat-heading strong {
+    font-size: 14px;
+}
+
+.kim-chat-heading span {
+    font-size: 11px;
+    opacity: .95;
+}
+
+.kim-chat-heading i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #86efac;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.kim-chat-close {
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.kim-chat-messages {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    flex: 1;
+    background: #f8fafc;
+}
+
+.kim-chat-bubble {
+    max-width: 90%;
+    padding: 11px 13px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.kim-assistant-bubble {
+    background: white;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.kim-user-bubble {
+    background: #036CB9;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.kim-chat-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.kim-chat-quick-actions button,
+.kim-ticket-link {
+    border: 1px solid #036CB9;
+    color: #036CB9;
+    background: white;
+    border-radius: 999px;
+    padding: 8px 10px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.kim-chat-footer {
+    padding: 10px 12px;
+    border-top: 1px solid #e2e8f0;
+    background: white;
+}
+
+.kim-chat-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.kim-chat-form input {
+    min-width: 0;
+    flex: 1;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    padding: 12px;
+    font-size: 13px;
+    outline-color: #036CB9;
+}
+
+.kim-chat-form button {
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: #A5075E;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.kim-chat-form button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.kim-chat-footer small {
+    display: block;
+    color: #64748b;
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+.kim-ticket-link {
+    border: 0;
+    padding: 3px 0;
+    text-decoration: underline;
+}
+
+.kim-ticket-form-wrap {
+    padding: 13px;
+    overflow: auto;
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+    max-height: 68%;
+}
+
+.kim-ticket-form-wrap form {
+    display: grid;
+    gap: 9px;
+}
+
+.kim-ticket-form-wrap strong {
+    font-size: 14px;
+}
+
+.kim-ticket-form-wrap p,
+.kim-ticket-form-wrap small {
+    font-size: 11px;
+    color: #64748b;
+    margin: 0;
+}
+
+.kim-ticket-form-wrap label {
+    display: grid;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.kim-ticket-form-wrap input,
+.kim-ticket-form-wrap textarea,
+.kim-ticket-form-wrap select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: 12px Arial, sans-serif;
+}
+
+.kim-ticket-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.kim-ticket-actions button {
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.kim-ticket-actions button[type="submit"] {
+    background: #A5075E;
+    color: white;
+}
+
+.kim-ticket-actions button[type="button"] {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+@media (max-width: 480px) {
+    .kim-chat-launcher {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .kim-chat-panel {
+        right: 8px;
+        bottom: 75px;
+        width: calc(100vw - 16px);
+        height: calc(100dvh - 92px);
+        max-height: 700px;
+    }
+
+    .kim-launcher-label {
+        font-size: 13px;
+    }
+}
